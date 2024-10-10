@@ -14,7 +14,8 @@ import { TextInput } from "../styles/components";
 export const NumberFormatCell = (
   props: CellProps & VanillaRendererProps & Formatted<number | undefined>
 ) => {
-  const { className, id, enabled, uischema, path, handleChange, schema } = props;
+  const { className, id, enabled, uischema, path, handleChange, schema } =
+    props;
   const maxLength = schema.maxLength;
   const formattedNumber: string = props.toFormatted(props.data);
 
@@ -38,6 +39,11 @@ export const NumberFormatCell = (
   );
 };
 
-export const numberFormatCellTester: RankedTester = rankWith(4, isNumberFormatControl);
+export const numberFormatCellTester: RankedTester = rankWith(
+  4,
+  isNumberFormatControl
+);
 
-export default withJsonFormsCellProps(withVanillaCellProps(NumberFormatCell));
+export default withJsonFormsCellProps(
+  withVanillaCellProps(NumberFormatCell)
+) as typeof NumberFormatCell;

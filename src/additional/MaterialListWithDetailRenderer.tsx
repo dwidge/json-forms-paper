@@ -50,7 +50,9 @@ export const MaterialListWithDetailRenderer = ({
   disableRemove,
   translations,
 }: ArrayLayoutProps & { translations: ArrayTranslations }) => {
-  const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
+  const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
+    undefined
+  );
 
   const handleRemoveItem = useCallback(
     (p: string, value: any) => () => {
@@ -66,7 +68,10 @@ export const MaterialListWithDetailRenderer = ({
     [removeItems, selectedIndex]
   );
 
-  const handleListItemClick = useCallback((index: number) => () => setSelectedIndex(index), []);
+  const handleListItemClick = useCallback(
+    (index: number) => () => setSelectedIndex(index),
+    []
+  );
 
   const handleCreateDefaultValue = useCallback(
     () => createDefaultValue(schema, rootSchema),
@@ -75,7 +80,15 @@ export const MaterialListWithDetailRenderer = ({
 
   const foundUISchema = useMemo(
     () =>
-      findUISchema(uischemas ?? [], schema, uischema.scope, path, undefined, uischema, rootSchema),
+      findUISchema(
+        uischemas ?? [],
+        schema,
+        uischema.scope,
+        path,
+        undefined,
+        uischema,
+        rootSchema
+      ),
     [uischemas, schema, uischema.scope, path, uischema, rootSchema]
   );
 
@@ -92,7 +105,10 @@ export const MaterialListWithDetailRenderer = ({
   }
 
   const contextStyles = useStyles();
-  const listControl = useMemo(() => findStyleAsClassName(contextStyles)("list"), [contextStyles]);
+  const listControl = useMemo(
+    () => findStyleAsClassName(contextStyles)("list"),
+    [contextStyles]
+  );
   const listControlContainer = useMemo(
     () => findStyleAsClassName(contextStyles)("list.container"),
     [contextStyles]
@@ -106,7 +122,11 @@ export const MaterialListWithDetailRenderer = ({
     <Surface className={listControl}>
       <ArrayLayoutToolbar
         translations={translations}
-        label={computeLabel(label, required ?? false, appliedUiSchemaOptions.hideRequiredAsterisk)}
+        label={computeLabel(
+          label,
+          required ?? false,
+          appliedUiSchemaOptions.hideRequiredAsterisk
+        )}
         description={description ?? ""}
         errors={errors}
         path={path}
@@ -132,6 +152,7 @@ export const MaterialListWithDetailRenderer = ({
                 childLabelProp={appliedUiSchemaOptions.elementLabelProp}
                 translations={translations}
                 disableRemove={doDisableRemove}
+                childLabel=""
               />
             ))
           ) : (
@@ -164,4 +185,4 @@ export const materialListWithDetailTester: RankedTester = rankWith(
 
 export default withJsonFormsArrayLayoutProps(
   withTranslateProps(withArrayTranslationProps(MaterialListWithDetailRenderer))
-);
+) as typeof MaterialListWithDetailRenderer;

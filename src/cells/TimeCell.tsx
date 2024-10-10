@@ -24,7 +24,12 @@
 */
 
 import React from "react";
-import { CellProps, isTimeControl, RankedTester, rankWith } from "@jsonforms/core";
+import {
+  CellProps,
+  isTimeControl,
+  RankedTester,
+  rankWith,
+} from "@jsonforms/core";
 import { withJsonFormsCellProps } from "@jsonforms/react";
 import type { VanillaRendererProps } from "../index";
 import { withVanillaCellProps } from "../util/index";
@@ -49,7 +54,9 @@ export const TimeCell = (props: CellProps & VanillaRendererProps) => {
       mode="outlined"
       label="Time"
       value={data || ""}
-      onChangeText={(value) => handleChange(path, appendSecondsIfNecessary(value))}
+      onChangeText={(value) =>
+        handleChange(path, appendSecondsIfNecessary(value))
+      }
       className={className}
       testID={id}
       disabled={!enabled}
@@ -60,4 +67,6 @@ export const TimeCell = (props: CellProps & VanillaRendererProps) => {
 
 export const timeCellTester: RankedTester = rankWith(2, isTimeControl);
 
-export default withJsonFormsCellProps(withVanillaCellProps(TimeCell));
+export default withJsonFormsCellProps(
+  withVanillaCellProps(TimeCell)
+) as typeof TimeCell;

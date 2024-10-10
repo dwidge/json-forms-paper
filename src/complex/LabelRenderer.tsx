@@ -37,11 +37,9 @@ export const labelRendererTester: RankedTester = rankWith(1, uiTypeIs("Label"));
 /**
  * Default renderer for a label.
  */
-export const LabelRenderer: FunctionComponent<LabelProps & VanillaRendererProps> = ({
-  text,
-  visible,
-  getStyleAsClassName = () => "",
-}) => {
+export const LabelRenderer: FunctionComponent<
+  LabelProps & VanillaRendererProps
+> = ({ text, visible, getStyleAsClassName = (v: string) => "" }) => {
   const classNames = getStyleAsClassName("label-control");
   const isHidden = !visible;
 

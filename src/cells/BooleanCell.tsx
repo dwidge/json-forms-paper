@@ -1,11 +1,18 @@
 import React, { FC } from "react";
-import { CellProps, isBooleanControl, RankedTester, rankWith } from "@jsonforms/core";
+import {
+  CellProps,
+  isBooleanControl,
+  RankedTester,
+  rankWith,
+} from "@jsonforms/core";
 import { withJsonFormsCellProps } from "@jsonforms/react";
 import { Checkbox } from "react-native-paper"; // Updated import
 import type { VanillaRendererProps } from "../index";
 import { withVanillaBooleanCellProps } from "../util/index";
 
-export const BooleanCell: FC<CellProps> = (props: CellProps & VanillaRendererProps) => {
+export const BooleanCell: FC<CellProps> = (
+  props: CellProps & VanillaRendererProps
+) => {
   const { data, id, enabled, uischema, path, handleChange } = props;
 
   return (
@@ -24,4 +31,6 @@ export const BooleanCell: FC<CellProps> = (props: CellProps & VanillaRendererPro
  */
 export const booleanCellTester: RankedTester = rankWith(2, isBooleanControl);
 
-export default withJsonFormsCellProps(withVanillaBooleanCellProps(BooleanCell));
+export default withJsonFormsCellProps(
+  withVanillaBooleanCellProps(BooleanCell)
+) as typeof BooleanCell;

@@ -1,5 +1,10 @@
 import React from "react";
-import { CellProps, isDateControl, RankedTester, rankWith } from "@jsonforms/core";
+import {
+  CellProps,
+  isDateControl,
+  RankedTester,
+  rankWith,
+} from "@jsonforms/core";
 import { withJsonFormsCellProps } from "@jsonforms/react";
 import type { VanillaRendererProps } from "../index";
 import { withVanillaCellProps } from "../util/index";
@@ -24,4 +29,6 @@ export const DateCell = (props: CellProps & VanillaRendererProps) => {
 
 export const dateCellTester: RankedTester = rankWith(2, isDateControl);
 
-export default withJsonFormsCellProps(withVanillaCellProps(DateCell));
+export default withJsonFormsCellProps(
+  withVanillaCellProps(DateCell)
+) as typeof DateCell;

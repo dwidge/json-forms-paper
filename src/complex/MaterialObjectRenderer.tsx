@@ -61,9 +61,9 @@ export const MaterialObjectRenderer = ({
                 label,
               },
         uischema,
-        rootSchema,
+        rootSchema
       ),
-    [uischemas, schema, uischema.scope, path, label, uischema, rootSchema],
+    [uischemas, schema, uischema.scope, path, label, uischema, rootSchema]
   );
 
   if (!visible) {
@@ -85,7 +85,9 @@ export const MaterialObjectRenderer = ({
 
 export const materialObjectControlTester: RankedTester = rankWith(
   2,
-  isObjectControl,
+  isObjectControl
 );
 
-export default withJsonFormsDetailProps(MaterialObjectRenderer);
+export default withJsonFormsDetailProps(
+  MaterialObjectRenderer
+) as typeof MaterialObjectRenderer;

@@ -19,11 +19,11 @@ export const ListWithDetailMasterItem = ({
   const contextStyles = useStyles();
   const listControl = useMemo(
     () => findStyleAsClassName(contextStyles)("list"),
-    [contextStyles],
+    [contextStyles]
   );
   const listControlSelected = useMemo(
     () => findStyleAsClassName(contextStyles)("list.selected"),
-    [contextStyles],
+    [contextStyles]
   );
   return (
     <List.Item
@@ -49,4 +49,6 @@ export const ListWithDetailMasterItem = ({
   );
 };
 
-export default withJsonFormsMasterListItemProps(ListWithDetailMasterItem);
+export default withJsonFormsMasterListItemProps(
+  ListWithDetailMasterItem
+) as typeof ListWithDetailMasterItem;

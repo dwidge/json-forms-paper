@@ -3,11 +3,14 @@ import { CellProps, isIntegerControl, rankWith } from "@jsonforms/core";
 import { withJsonFormsCellProps } from "@jsonforms/react";
 import { TextInput } from "react-native-paper";
 
-const toNumber = (value: string) => (value === "" ? undefined : parseInt(value, 10));
+const toNumber = (value: string) =>
+  value === "" ? undefined : parseInt(value, 10);
 
 export const IntegerCell = (props: CellProps) => {
   const { data, id, enabled, uischema, path, handleChange } = props;
-  const [inputValue, setInputValue] = useState(data !== undefined ? String(data) : "");
+  const [inputValue, setInputValue] = useState(
+    data !== undefined ? String(data) : ""
+  );
   const [isValid, setIsValid] = useState(true);
 
   // Update local state when data prop changes
@@ -47,4 +50,4 @@ export const IntegerCell = (props: CellProps) => {
  */
 export const integerCellTester = rankWith(2, isIntegerControl);
 
-export default withJsonFormsCellProps(IntegerCell);
+export default withJsonFormsCellProps(IntegerCell) as typeof IntegerCell;

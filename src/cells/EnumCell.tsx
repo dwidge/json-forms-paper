@@ -1,12 +1,33 @@
 import React, { useMemo } from "react";
 import { Menu, Button } from "react-native-paper";
-import { EnumCellProps, isEnumControl, RankedTester, rankWith } from "@jsonforms/core";
-import { withJsonFormsEnumCellProps, TranslateProps, withTranslateProps } from "@jsonforms/react";
+import {
+  EnumCellProps,
+  isEnumControl,
+  RankedTester,
+  rankWith,
+} from "@jsonforms/core";
+import {
+  withJsonFormsEnumCellProps,
+  TranslateProps,
+  withTranslateProps,
+} from "@jsonforms/react";
 import { i18nDefaults, withVanillaEnumCellProps } from "../util";
 import type { VanillaRendererProps } from "../index";
 
-export const EnumCell = (props: EnumCellProps & VanillaRendererProps & TranslateProps) => {
-  const { data, id, enabled, schema, uischema, path, handleChange, options, t } = props;
+export const EnumCell = (
+  props: EnumCellProps & VanillaRendererProps & TranslateProps
+) => {
+  const {
+    data,
+    id,
+    enabled,
+    schema,
+    uischema,
+    path,
+    handleChange,
+    options,
+    t,
+  } = props;
   const noneOptionLabel = useMemo(
     () => t("enum.none", i18nDefaults["enum.none"], { schema, uischema, path }),
     [t, schema, uischema, path]
@@ -18,7 +39,11 @@ export const EnumCell = (props: EnumCellProps & VanillaRendererProps & Translate
     <Menu
       visible={visible}
       onDismiss={() => setVisible(false)}
-      anchor={<Button onPress={() => setVisible(true)}>{data || noneOptionLabel}</Button>}
+      anchor={
+        <Button onPress={() => setVisible(true)}>
+          {data || noneOptionLabel}
+        </Button>
+      }
     >
       {options?.map((optionValue) => (
         <Menu.Item
@@ -36,4 +61,6 @@ export const EnumCell = (props: EnumCellProps & VanillaRendererProps & Translate
 
 export const enumCellTester: RankedTester = rankWith(2, isEnumControl);
 
-export default withJsonFormsEnumCellProps(withTranslateProps(withVanillaEnumCellProps(EnumCell)));
+export default withJsonFormsEnumCellProps(
+  withTranslateProps(withVanillaEnumCellProps(EnumCell))
+) as typeof EnumCell;

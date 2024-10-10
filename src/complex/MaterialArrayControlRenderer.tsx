@@ -101,4 +101,4 @@ export const materialArrayControlTester: RankedTester = rankWith(
 
 export default withJsonFormsArrayLayoutProps(
   withTranslateProps(withArrayTranslationProps(MaterialArrayControlRenderer))
-);
+) as typeof MaterialArrayControlRenderer;
