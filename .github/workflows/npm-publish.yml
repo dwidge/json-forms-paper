@@ -12,6 +12,9 @@ jobs:
     permissions:
       packages: write
       contents: read
+    timeout-minutes: 5
+    env:
+      NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -20,10 +23,5 @@ jobs:
           cache: "pnpm"
           node-version-file: "package.json"
       - run: pnpm install
-        env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: pnpm test
-      - uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          registry: "https://npm.pkg.github.com"
+      - run: pnpm publish
