@@ -6,9 +6,8 @@ import {
   rankWith,
 } from "@jsonforms/core";
 import { withJsonFormsCellProps } from "@jsonforms/react";
-import type { VanillaRendererProps } from "../index";
-import { withVanillaCellProps } from "../util/index";
-import { TextInput } from "../styles/components";
+import { VanillaRendererProps, withVanillaCellProps } from "../util/index.js";
+import { TextInput } from "../styles/components.js";
 
 export const DateCell = (props: CellProps & VanillaRendererProps) => {
   const { data, className, id, enabled, uischema, path, handleChange } = props;

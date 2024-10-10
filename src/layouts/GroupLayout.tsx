@@ -33,11 +33,11 @@ import {
 import { withJsonFormsLayoutProps } from "@jsonforms/react";
 import isEmpty from "lodash/isEmpty";
 import React, { FunctionComponent } from "react";
-import type { VanillaRendererProps } from "../index";
-import { withVanillaControlProps } from "../util";
-import { renderChildren } from "./util";
+import type { VanillaRendererProps } from "../index.js";
+import { withVanillaControlProps } from "../util/index.js";
+import { renderChildren } from "./util.js";
 
-import { Text, View } from "../styles/components";
+import { Text, View } from "../styles/components.js";
 
 /**
  * Default tester for a group layout.
@@ -47,7 +47,7 @@ import { Text, View } from "../styles/components";
 export const groupTester: RankedTester = rankWith(1, uiTypeIs("Group"));
 
 export const GroupLayoutRenderer = (
-  props: LayoutProps & VanillaRendererProps,
+  props: LayoutProps & VanillaRendererProps
 ) => {
   const { data: _data, ...otherProps } = props;
   // We don't hand over data to the layout renderer to avoid rerendering it with every data change
@@ -86,5 +86,5 @@ const GroupLayoutRendererComponent: FunctionComponent<
 });
 
 export default withVanillaControlProps(
-  withJsonFormsLayoutProps(GroupLayoutRenderer),
+  withJsonFormsLayoutProps(GroupLayoutRenderer)
 );

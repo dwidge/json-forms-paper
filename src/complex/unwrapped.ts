@@ -22,12 +22,12 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-// import { MaterialAllOfRenderer } from './MaterialAllOfRenderer';
-// import { MaterialAnyOfRenderer } from './MaterialAnyOfRenderer';
-import { MaterialArrayControlRenderer } from "./MaterialArrayControlRenderer";
-// import { MaterialEnumArrayRenderer } from './MaterialEnumArrayRenderer';
-// import { MaterialObjectRenderer } from './MaterialObjectRenderer';
-// import { MaterialOneOfRenderer } from './MaterialOneOfRenderer';
+// import { MaterialAllOfRenderer } from './MaterialAllOfRenderer.js';
+// import { MaterialAnyOfRenderer } from './MaterialAnyOfRenderer.js';
+import { MaterialArrayControlRenderer } from "./MaterialArrayControlRenderer.js";
+// import { MaterialEnumArrayRenderer } from './MaterialEnumArrayRenderer.js';
+// import { MaterialObjectRenderer } from './MaterialObjectRenderer.js';
+// import { MaterialOneOfRenderer } from './MaterialOneOfRenderer.js';
 
 export const UnwrappedComplex = {
   // MaterialAllOfRenderer,

@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import {
   CellProps,
   isBooleanControl,
@@ -6,9 +5,12 @@ import {
   rankWith,
 } from "@jsonforms/core";
 import { withJsonFormsCellProps } from "@jsonforms/react";
-import { Checkbox } from "react-native-paper"; // Updated import
-import type { VanillaRendererProps } from "../index";
-import { withVanillaBooleanCellProps } from "../util/index";
+import { FC } from "react";
+import { Checkbox } from "react-native-paper";
+import {
+  VanillaRendererProps,
+  withVanillaBooleanCellProps,
+} from "../util/index.js";
 
 export const BooleanCell: FC<CellProps> = (
   props: CellProps & VanillaRendererProps

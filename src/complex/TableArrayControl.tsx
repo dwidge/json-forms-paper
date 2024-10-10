@@ -31,7 +31,7 @@ import {
   Text,
   View,
   DataTable,
-} from "../styles/components";
+} from "../styles/components.js";
 import {
   ArrayControlProps,
   ControlElement,
@@ -51,10 +51,10 @@ import {
   withJsonFormsArrayControlProps,
   withTranslateProps,
 } from "@jsonforms/react";
-import { withVanillaControlProps } from "../util";
-import type { VanillaRendererProps } from "../index";
+import { withVanillaControlProps } from "../util/index.js";
+import type { VanillaRendererProps } from "../index.js";
 import _ from "lodash";
-import { DeleteDialog } from "./DeleteDialog";
+import { DeleteDialog } from "./DeleteDialog.js";
 
 const { convertToValidClassName } = Helpers;
 const { or, isObjectArrayControl, isPrimitiveArrayControl, rankWith } = Test;

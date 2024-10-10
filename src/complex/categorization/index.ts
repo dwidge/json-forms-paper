@@ -22,10 +22,13 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import CategorizationRenderer from "./CategorizationRenderer";
-import { categorizationTester } from "./tester";
-import { CategorizationList, CategorizationProps } from "./CategorizationList";
-import { SingleCategory } from "./SingleCategory";
+import CategorizationRenderer from "./CategorizationRenderer.js";
+import { categorizationTester } from "./tester.js";
+import {
+  CategorizationList,
+  CategorizationProps,
+} from "./CategorizationList.js";
+import { SingleCategory } from "./SingleCategory.js";
 
 export {
   categorizationTester,

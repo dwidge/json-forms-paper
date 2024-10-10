@@ -26,8 +26,12 @@ import remove from "lodash/remove";
 import join from "lodash/join";
 import filter from "lodash/filter";
 import reduce from "lodash/reduce";
-import { REGISTER_STYLE, REGISTER_STYLES, UNREGISTER_STYLE } from "../actions";
-import { StyleDef } from "../styles";
+import {
+  REGISTER_STYLE,
+  REGISTER_STYLES,
+  UNREGISTER_STYLE,
+} from "../actions/index.js";
+import { StyleDef } from "../styles/index.js";
 
 const removeStyle = (styles: StyleDef[], name: string) => {
   const copy = styles.slice();
@@ -75,7 +79,8 @@ export const stylingReducer = (state: StyleDef[] = [], action: any) => {
     }
     case REGISTER_STYLES: {
       return action.styles.reduce(
-        (allStyles: StyleDef[], style: StyleDef) => registerStyle(allStyles, style),
+        (allStyles: StyleDef[], style: StyleDef) =>
+          registerStyle(allStyles, style),
         state
       );
     }

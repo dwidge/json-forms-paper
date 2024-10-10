@@ -31,12 +31,14 @@ import {
   RankedTester,
   rankWith,
 } from "@jsonforms/core";
-import { withVanillaControlProps } from "../util";
-import type { VanillaRendererProps } from "../index";
+import { withVanillaControlProps } from "../util/index.js";
+import type { VanillaRendererProps } from "../index.js";
 import { withJsonFormsOneOfEnumProps } from "@jsonforms/react";
-import { RadioGroup } from "./RadioGroup";
+import { RadioGroup } from "./RadioGroup.js";
 
-export const OneOfRadioGroupControl = (props: ControlProps & VanillaRendererProps) => {
+export const OneOfRadioGroupControl = (
+  props: ControlProps & VanillaRendererProps
+) => {
   return <RadioGroup {...props} />;
 };
 
@@ -45,4 +47,6 @@ export const oneOfRadioGroupControlTester: RankedTester = rankWith(
   and(isOneOfEnumControl, optionIs("format", "radio"))
 );
 
-export default withVanillaControlProps(withJsonFormsOneOfEnumProps(OneOfRadioGroupControl));
+export default withVanillaControlProps(
+  withJsonFormsOneOfEnumProps(OneOfRadioGroupControl)
+);

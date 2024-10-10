@@ -22,10 +22,14 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import ArrayControl, { arrayControlTester } from "./array";
-import Categorization, { categorizationTester } from "./categorization";
-// import LabelRenderer, { labelRendererTester } from "./LabelRenderer";
-import TableArrayControl, { tableArrayControlTester } from "./TableArrayControl";
+import ArrayControl, { arrayControlTester } from "./array/index.js";
+import Categorization, {
+  categorizationTester,
+} from "./categorization/index.js";
+// import LabelRenderer, { labelRendererTester } from "./LabelRenderer.js";
+import TableArrayControl, {
+  tableArrayControlTester,
+} from "./TableArrayControl.js";
 
 export {
   ArrayControl,
@@ -40,20 +44,22 @@ export {
 
 // import MaterialAllOfRenderer, {
 //   materialAllOfControlTester,
-// } from './MaterialAllOfRenderer';
+// } from './MaterialAllOfRenderer.js';
 // import MaterialAnyOfRenderer, {
 //   materialAnyOfControlTester,
-// } from './MaterialAnyOfRenderer';
+// } from './MaterialAnyOfRenderer.js';
 import MaterialArrayControlRenderer, {
   materialArrayControlTester,
-} from "./MaterialArrayControlRenderer";
+} from "./MaterialArrayControlRenderer.js";
 // import MaterialEnumArrayRenderer, {
 //   materialEnumArrayRendererTester,
-// } from './MaterialEnumArrayRenderer';
-import MaterialObjectRenderer, { materialObjectControlTester } from "./MaterialObjectRenderer";
+// } from './MaterialEnumArrayRenderer.js';
+import MaterialObjectRenderer, {
+  materialObjectControlTester,
+} from "./MaterialObjectRenderer.js";
 // import MaterialOneOfRenderer, {
 //   materialOneOfControlTester,
-// } from './MaterialOneOfRenderer';
+// } from './MaterialOneOfRenderer.js';
 
 export {
   // materialAllOfControlTester,

@@ -26,7 +26,7 @@ import isEmpty from "lodash/isEmpty";
 import React from "react";
 import { JsonSchema, Layout } from "@jsonforms/core";
 import { JsonFormsDispatch, useJsonForms } from "@jsonforms/react";
-import { View } from "../styles/components";
+import { View } from "../styles/components.js";
 export interface RenderChildrenProps {
   layout: Layout;
   schema: JsonSchema;

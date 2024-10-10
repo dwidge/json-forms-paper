@@ -46,7 +46,7 @@ import {
   textCellTester,
   TimeCell,
   timeCellTester,
-} from "./cells";
+} from "./cells/index.js";
 
 import {
   InputControl,
@@ -55,7 +55,7 @@ import {
   radioGroupControlTester,
   OneOfRadioGroupControl,
   oneOfRadioGroupControlTester,
-} from "./controls";
+} from "./controls/index.js";
 
 import {
   ArrayControl,
@@ -66,7 +66,7 @@ import {
   // labelRendererTester,
   TableArrayControl,
   tableArrayControlTester,
-} from "./complex";
+} from "./complex/index.js";
 import {
   // materialAllOfControlTester,
   // MaterialAllOfRenderer,
@@ -80,7 +80,7 @@ import {
   // MaterialOneOfRenderer,
   // MaterialEnumArrayRenderer,
   // materialEnumArrayRendererTester,
-} from "./complex";
+} from "./complex/index.js";
 
 import {
   GroupLayout,
@@ -89,9 +89,14 @@ import {
   horizontalLayoutTester,
   VerticalLayout,
   verticalLayoutTester,
-} from "./layouts";
-import UnknownRenderer, { unknownRendererTester } from "./controls/UnknownRenderer";
-import { MaterialLabelRenderer, materialLabelRendererTester } from "./additional";
+} from "./layouts/index.js";
+import UnknownRenderer, {
+  unknownRendererTester,
+} from "./controls/UnknownRenderer.js";
+import {
+  MaterialLabelRenderer,
+  materialLabelRendererTester,
+} from "./additional/index.js";
 
 export const paperRenderers: { tester: RankedTester; renderer: any }[] = [
   { tester: materialObjectControlTester, renderer: MaterialObjectRenderer },

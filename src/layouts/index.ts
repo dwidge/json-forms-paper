@@ -22,9 +22,11 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import GroupLayout, { groupTester } from "./GroupLayout";
-import HorizontalLayout, { horizontalLayoutTester } from "./HorizontalLayout";
-import VerticalLayout, { verticalLayoutTester } from "./VerticalLayout";
+import GroupLayout, { groupTester } from "./GroupLayout.js";
+import HorizontalLayout, {
+  horizontalLayoutTester,
+} from "./HorizontalLayout.js";
+import VerticalLayout, { verticalLayoutTester } from "./VerticalLayout.js";
 
 export {
   GroupLayout,

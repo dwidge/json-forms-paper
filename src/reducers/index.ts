@@ -22,7 +22,7 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import { findStyle, findStyleAsClassName, stylingReducer } from "./styling";
+import { findStyle, findStyleAsClassName, stylingReducer } from "./styling.js";
 import { JsonFormsState } from "@jsonforms/core";
 export { stylingReducer };
 

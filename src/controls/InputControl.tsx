@@ -34,10 +34,10 @@ import {
   rankWith,
 } from "@jsonforms/core";
 import { DispatchCell, withJsonFormsControlProps } from "@jsonforms/react";
-import { withVanillaControlProps } from "../util";
-import type { VanillaRendererProps } from "../index";
+import { withVanillaControlProps } from "../util/index.js";
+import type { VanillaRendererProps } from "../index.js";
 import merge from "lodash/merge";
-import { Text, View } from "../styles/components";
+import { Text, View } from "../styles/components.js";
 
 const InputControl = (props: ControlProps & VanillaRendererProps) => {
   const {
@@ -70,7 +70,7 @@ const InputControl = (props: ControlProps & VanillaRendererProps) => {
     visible,
     description,
     isFocused,
-    appliedUiSchemaOptions.showUnfocusedDescription,
+    appliedUiSchemaOptions.showUnfocusedDescription
   );
   const testerContext = {
     rootSchema: rootSchema,
@@ -98,7 +98,7 @@ const InputControl = (props: ControlProps & VanillaRendererProps) => {
           {computeLabel(
             label,
             required ?? false,
-            appliedUiSchemaOptions.hideRequiredAsterisk,
+            appliedUiSchemaOptions.hideRequiredAsterisk
           )}{" "}
           {!isValid && (
             <Text className={"error " + classNames.label}>{errors.trim()}</Text>

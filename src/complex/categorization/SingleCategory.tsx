@@ -25,7 +25,7 @@
 import React from "react";
 import type { Category, JsonSchema } from "@jsonforms/core";
 import { JsonFormsDispatch } from "@jsonforms/react";
-import { View } from "../../styles";
+import { View } from "../../styles/index.js";
 
 export interface CategoryProps {
   category: Category;
@@ -37,7 +37,12 @@ export const SingleCategory = ({ category, schema, path }: CategoryProps) => (
   // TODO: add selected style
   <View id="categorization.detail" className="categorization-detail">
     {(category.elements || []).map((child, index) => (
-      <JsonFormsDispatch key={`${path}-${index}`} uischema={child} schema={schema} path={path} />
+      <JsonFormsDispatch
+        key={`${path}-${index}`}
+        uischema={child}
+        schema={schema}
+        path={path}
+      />
     ))}
   </View>
 );

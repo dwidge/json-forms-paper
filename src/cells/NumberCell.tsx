@@ -6,9 +6,9 @@ import {
   rankWith,
 } from "@jsonforms/core";
 import { withJsonFormsCellProps } from "@jsonforms/react";
-import type { VanillaRendererProps } from "../index";
-import { withVanillaCellProps } from "../util/index";
-import { TextInput } from "../styles/components";
+import type { VanillaRendererProps } from "../index.js";
+import { withVanillaCellProps } from "../util/index.js";
+import { TextInput } from "../styles/components.js";
 
 const toNumber = (value: string) => (value === "" ? undefined : Number(value));
 

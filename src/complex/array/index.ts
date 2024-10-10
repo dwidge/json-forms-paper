@@ -22,10 +22,17 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import { isObjectArrayWithNesting, RankedTester, rankWith } from "@jsonforms/core";
-import ArrayControlRenderer, { ArrayControl } from "./ArrayControlRenderer";
+import {
+  isObjectArrayWithNesting,
+  RankedTester,
+  rankWith,
+} from "@jsonforms/core";
+import ArrayControlRenderer, { ArrayControl } from "./ArrayControlRenderer.js";
 export { ArrayControlRenderer, ArrayControl };
 
-export const arrayControlTester: RankedTester = rankWith(4, isObjectArrayWithNesting);
+export const arrayControlTester: RankedTester = rankWith(
+  4,
+  isObjectArrayWithNesting
+);
 
 export default ArrayControlRenderer;

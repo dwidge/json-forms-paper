@@ -32,7 +32,7 @@ import {
   JsonSchema,
   ArrayTranslations,
 } from "@jsonforms/core";
-import ValidationIcon from "./ValidationIcon";
+import ValidationIcon from "./ValidationIcon.js";
 
 export interface MaterialTableToolbarProps {
   numColumns: number;

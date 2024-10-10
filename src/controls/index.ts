@@ -22,9 +22,13 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import InputControl, { inputControlTester } from "./InputControl";
-import RadioGroupControl, { radioGroupControlTester } from "./RadioGroupControl";
-import OneOfRadioGroupControl, { oneOfRadioGroupControlTester } from "./OneOfRadioGroupControl";
+import InputControl, { inputControlTester } from "./InputControl.js";
+import RadioGroupControl, {
+  radioGroupControlTester,
+} from "./RadioGroupControl.js";
+import OneOfRadioGroupControl, {
+  oneOfRadioGroupControlTester,
+} from "./OneOfRadioGroupControl.js";
 export {
   InputControl,
   inputControlTester,

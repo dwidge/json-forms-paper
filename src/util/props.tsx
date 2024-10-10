@@ -38,9 +38,9 @@ import type {
 } from "@jsonforms/core";
 import { convertToValidClassName, getAjv, getConfig } from "@jsonforms/core";
 import { useJsonForms } from "@jsonforms/react";
-import { getStyle, getStyleAsClassName } from "../reducers";
-import { findStyle, findStyleAsClassName } from "../reducers/styling";
-import { useStyles } from "../styles";
+import { getStyle, getStyleAsClassName } from "../reducers/index.js";
+import { findStyle, findStyleAsClassName } from "../reducers/styling.js";
+import { useStyles } from "../styles/index.js";
 
 export interface WithClassname {
   className?: string;
@@ -105,9 +105,13 @@ export const addVanillaControlProps =
       classNames = classNames.concat(getStyle(state)("control.trim"));
     }
     const labelClass = getStyleAsClassName(state)("control.label");
-    const descriptionClassName = getStyleAsClassName(state)("input.description");
-    const validationClassName = getStyleAsClassName(state)("control.validation");
-    const validationErrorClassName = getStyleAsClassName(state)("control.validation.error");
+    const descriptionClassName =
+      getStyleAsClassName(state)("input.description");
+    const validationClassName =
+      getStyleAsClassName(state)("control.validation");
+    const validationErrorClassName = getStyleAsClassName(state)(
+      "control.validation.error"
+    );
     const inputClassName = ["validate"].concat(isValid ? "valid" : "invalid");
 
     return {
@@ -132,7 +136,10 @@ export const withVanillaControlProps = (Component: ComponentType<any>) =>
     const controlElement = props.uischema as ControlElement;
     const config = ctx.config;
     const trim = config && config.trim;
-    const styles = useMemo(() => findStyle(contextStyles)("control"), [contextStyles]);
+    const styles = useMemo(
+      () => findStyle(contextStyles)("control"),
+      [contextStyles]
+    );
     let classNames: string[] = !isEmpty(controlElement.scope)
       ? styles.concat([`${convertToValidClassName(controlElement.scope)}`])
       : [""];
@@ -159,7 +166,10 @@ export const withVanillaControlProps = (Component: ComponentType<any>) =>
     );
     const inputClassName = ["validate"].concat(isValid ? "valid" : "invalid");
 
-    const getStyleAsClassName = useMemo(() => findStyleAsClassName(contextStyles), [contextStyles]);
+    const getStyleAsClassName = useMemo(
+      () => findStyleAsClassName(contextStyles),
+      [contextStyles]
+    );
     const getStyle = useMemo(() => findStyle(contextStyles), [contextStyles]);
 
     const wrapper = classNames.join(" ");
@@ -202,8 +212,13 @@ export const withVanillaControlProps = (Component: ComponentType<any>) =>
  * @returns {VanillaLayoutProps} vanilla specific layout props
  */
 export const addVanillaLayoutProps =
-  (mapStateToProps: (s: JsonFormsState, p: OwnPropsOfRenderer) => RendererProps) =>
-  (state: JsonFormsState, ownProps: OwnPropsOfRenderer): RendererProps & VanillaRendererProps => {
+  (
+    mapStateToProps: (s: JsonFormsState, p: OwnPropsOfRenderer) => RendererProps
+  ) =>
+  (
+    state: JsonFormsState,
+    ownProps: OwnPropsOfRenderer
+  ): RendererProps & VanillaRendererProps => {
     const props = mapStateToProps(state, ownProps);
 
     return {
@@ -214,10 +229,20 @@ export const addVanillaLayoutProps =
   };
 
 export const addVanillaCellProps =
-  (mapStateToCellsProps: (s: JsonFormsState, p: OwnPropsOfCell) => StatePropsOfCell) =>
-  (state: JsonFormsState, ownProps: OwnPropsOfCell): StatePropsOfCell & VanillaRendererProps => {
+  (
+    mapStateToCellsProps: (
+      s: JsonFormsState,
+      p: OwnPropsOfCell
+    ) => StatePropsOfCell
+  ) =>
+  (
+    state: JsonFormsState,
+    ownProps: OwnPropsOfCell
+  ): StatePropsOfCell & VanillaRendererProps => {
     const props = mapStateToCellsProps(state, ownProps);
-    const inputClassName = ["validate"].concat(props.isValid ? "valid" : "invalid");
+    const inputClassName = ["validate"].concat(
+      props.isValid ? "valid" : "invalid"
+    );
     return {
       ...props,
       className: inputClassName.join(" "),
@@ -226,26 +251,31 @@ export const addVanillaCellProps =
     };
   };
 
-const withVanillaCellPropsForType = (type: string) => (Component: ComponentType<any>) =>
-  function WithVanillaCellPropsForType(props: any) {
-    const inputClassName = ["validate"].concat(props.isValid ? "valid" : "invalid");
-    const styles = useStyles();
-    const definedStyle = findStyleAsClassName(styles)(type);
-    if (definedStyle) {
-      inputClassName.push(definedStyle);
-    }
+const withVanillaCellPropsForType =
+  (type: string) => (Component: ComponentType<any>) =>
+    function WithVanillaCellPropsForType(props: any) {
+      const inputClassName = ["validate"].concat(
+        props.isValid ? "valid" : "invalid"
+      );
+      const styles = useStyles();
+      const definedStyle = findStyleAsClassName(styles)(type);
+      if (definedStyle) {
+        inputClassName.push(definedStyle);
+      }
 
-    return (
-      <Component
-        {...props}
-        getStyleAsClassName={findStyleAsClassName(styles)}
-        getStyle={findStyle(styles)}
-        className={inputClassName.join(" ")}
-      />
-    );
-  };
+      return (
+        <Component
+          {...props}
+          getStyleAsClassName={findStyleAsClassName(styles)}
+          getStyle={findStyle(styles)}
+          className={inputClassName.join(" ")}
+        />
+      );
+    };
 
-export const withAjvProps = <P extends object>(Component: ComponentType<AjvProps & P>) =>
+export const withAjvProps = <P extends object>(
+  Component: ComponentType<AjvProps & P>
+) =>
   function WithAjvProps(props: P) {
     const ctx = useJsonForms();
     const ajv = getAjv({ jsonforms: { ...ctx } });
@@ -253,8 +283,11 @@ export const withAjvProps = <P extends object>(Component: ComponentType<AjvProps
     return <Component {...props} ajv={ajv} />;
   };
 
-export const withVanillaCellProps = withVanillaCellPropsForType("control.input");
+export const withVanillaCellProps =
+  withVanillaCellPropsForType("control.input");
 
-export const withVanillaEnumCellProps = withVanillaCellPropsForType("control.select");
+export const withVanillaEnumCellProps =
+  withVanillaCellPropsForType("control.select");
 
-export const withVanillaBooleanCellProps = withVanillaCellPropsForType("control.checkbox");
+export const withVanillaBooleanCellProps =
+  withVanillaCellPropsForType("control.checkbox");

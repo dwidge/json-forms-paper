@@ -22,14 +22,14 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-export { BooleanCell } from "./BooleanCell";
-export { DateCell } from "./DateCell";
-export { DateTimeCell } from "./DateTimeCell";
-export { EnumCell } from "./EnumCell";
-export { IntegerCell } from "./IntegerCell";
-export { NumberCell } from "./NumberCell";
-export { NumberFormatCell } from "./NumberFormatCell";
-export { SliderCell } from "./SliderCell";
-export { TextCell } from "./TextCell";
-export { TextAreaCell } from "./TextAreaCell";
-export { TimeCell } from "./TimeCell";
+export { BooleanCell } from "./BooleanCell.js";
+export { DateCell } from "./DateCell.js";
+export { DateTimeCell } from "./DateTimeCell.js";
+export { EnumCell } from "./EnumCell.js";
+export { IntegerCell } from "./IntegerCell.js";
+export { NumberCell } from "./NumberCell.js";
+export { NumberFormatCell } from "./NumberFormatCell.js";
+export { SliderCell } from "./SliderCell.js";
+export { TextCell } from "./TextCell.js";
+export { TextAreaCell } from "./TextAreaCell.js";
+export { TimeCell } from "./TimeCell.js";

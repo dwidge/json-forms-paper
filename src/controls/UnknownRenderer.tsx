@@ -25,13 +25,21 @@
 
 import React from "react";
 import { Text, Card } from "react-native-paper";
-import { ControlProps, isControl, RankedTester, rankWith } from "@jsonforms/core";
-import { VanillaRendererProps } from "../util";
+import {
+  ControlProps,
+  isControl,
+  RankedTester,
+  rankWith,
+} from "@jsonforms/core";
+import { VanillaRendererProps } from "../util/index.js";
 
 // Always returns -1, so it matches as a fallback when no other renderer matches
 export const unknownRendererTester: RankedTester = () => 0;
 
-const UnknownRenderer = ({ uischema, schema }: ControlProps & VanillaRendererProps) => (
+const UnknownRenderer = ({
+  uischema,
+  schema,
+}: ControlProps & VanillaRendererProps) => (
   <Card style={{}}>
     <Card.Content>
       {uischema.label && <Text>{uischema.label.toString()}</Text>}

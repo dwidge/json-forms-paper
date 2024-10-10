@@ -24,8 +24,8 @@
 */
 import React from "react";
 import { RendererProps } from "@jsonforms/core";
-import { VanillaRendererProps, WithChildren } from "../index";
-import { View } from "../styles/components";
+import { VanillaRendererProps, WithChildren } from "../index.js";
+import { View } from "../styles/components.js";
 
 export const JsonFormsLayout = ({
   className,

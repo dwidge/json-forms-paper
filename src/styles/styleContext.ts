@@ -24,7 +24,7 @@
 */
 
 import React, { useContext } from "react";
-import { StyleDef, vanillaStyles } from "./styles";
+import { StyleDef, vanillaStyles } from "./styles.js";
 
 export interface StyleContext {
   styles: StyleDef[];
@@ -36,7 +36,8 @@ const defaultContext: StyleContext = {
 
 export const JsonFormsStyleContext = React.createContext(defaultContext);
 
-export const useStyleContext = (): StyleContext => useContext(JsonFormsStyleContext);
+export const useStyleContext = (): StyleContext =>
+  useContext(JsonFormsStyleContext);
 
 export const useStyles = (): StyleDef[] => {
   const { styles } = useStyleContext();

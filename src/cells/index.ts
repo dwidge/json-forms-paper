@@ -22,18 +22,20 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import BooleanCell, { booleanCellTester } from "./BooleanCell";
-import DateCell, { dateCellTester } from "./DateCell";
-import DateTimeCell, { dateTimeCellTester } from "./DateTimeCell";
-import EnumCell, { enumCellTester } from "./EnumCell";
-import IntegerCell, { integerCellTester } from "./IntegerCell";
-import NumberCell, { numberCellTester } from "./NumberCell";
-import NumberFormatCell, { numberFormatCellTester } from "./NumberFormatCell";
-import SliderCell, { sliderCellTester } from "./SliderCell";
-import TextCell, { textCellTester } from "./TextCell";
-import TextAreaCell, { textAreaCellTester } from "./TextAreaCell";
-import TimeCell, { timeCellTester } from "./TimeCell";
-import * as Customizable from "./CustomizableCells";
+import BooleanCell, { booleanCellTester } from "./BooleanCell.js";
+import DateCell, { dateCellTester } from "./DateCell.js";
+import DateTimeCell, { dateTimeCellTester } from "./DateTimeCell.js";
+import EnumCell, { enumCellTester } from "./EnumCell.js";
+import IntegerCell, { integerCellTester } from "./IntegerCell.js";
+import NumberCell, { numberCellTester } from "./NumberCell.js";
+import NumberFormatCell, {
+  numberFormatCellTester,
+} from "./NumberFormatCell.js";
+import SliderCell, { sliderCellTester } from "./SliderCell.js";
+import TextCell, { textCellTester } from "./TextCell.js";
+import TextAreaCell, { textAreaCellTester } from "./TextAreaCell.js";
+import TimeCell, { timeCellTester } from "./TimeCell.js";
+import * as Customizable from "./CustomizableCells.js";
 
 export {
   BooleanCell,

@@ -25,7 +25,13 @@
 
 import range from "lodash/range";
 import React, { useMemo, useState } from "react";
-import { View, Button, IconButton, Text, Paragraph } from "../../styles";
+import {
+  View,
+  Button,
+  IconButton,
+  Text,
+  Paragraph,
+} from "../../styles/index.js";
 import {
   ArrayControlProps,
   composePaths,
@@ -41,8 +47,8 @@ import {
   withJsonFormsArrayControlProps,
   withTranslateProps,
 } from "@jsonforms/react";
-import type { VanillaRendererProps } from "../../index";
-import { withVanillaControlProps } from "../../util";
+import type { VanillaRendererProps } from "../../index.js";
+import { withVanillaControlProps } from "../../util/index.js";
 import { Dialog, Portal } from "react-native-paper";
 
 const { convertToValidClassName } = Helpers;
@@ -80,9 +86,9 @@ export const ArrayControl = ({
         path,
         undefined,
         uischema,
-        rootSchema,
+        rootSchema
       ),
-    [uischemas, schema, uischema.scope, path, uischema, rootSchema],
+    [uischemas, schema, uischema.scope, path, uischema, rootSchema]
   );
 
   const isValid = errors.length === 0;
@@ -198,7 +204,7 @@ export const ArrayControlRenderer = ({
   const controlElement = uischema as ControlElement;
   const labelDescription = Helpers.createLabelDescriptionFrom(
     controlElement,
-    schema,
+    schema
   );
   const label = labelDescription.show ? labelDescription.text : "";
 
@@ -230,6 +236,6 @@ export const ArrayControlRenderer = ({
 
 export default withVanillaControlProps(
   withJsonFormsArrayControlProps(
-    withTranslateProps(withArrayTranslationProps(ArrayControlRenderer)),
-  ),
+    withTranslateProps(withArrayTranslationProps(ArrayControlRenderer))
+  )
 );

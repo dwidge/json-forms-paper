@@ -6,10 +6,10 @@ import {
   rankWith,
 } from "@jsonforms/core";
 import { withJsonFormsCellProps } from "@jsonforms/react";
-import type { VanillaRendererProps } from "../index";
-import { withVanillaCellProps } from "../util/index";
+import type { VanillaRendererProps } from "../index.js";
+import { withVanillaCellProps } from "../util/index.js";
 import merge from "lodash/merge";
-import { TextInput } from "../styles/components";
+import { TextInput } from "../styles/components.js";
 
 export const TextCell = (props: CellProps & VanillaRendererProps) => {
   const {

@@ -23,10 +23,15 @@
   THE SOFTWARE.
 */
 import React, { useMemo, useState } from "react";
-import { computeLabel, ControlProps, isDescriptionHidden, OwnPropsOfEnum } from "@jsonforms/core";
-import type { VanillaRendererProps } from "../index";
-import { findStyleAsClassName } from "../reducers/styling";
-import { useStyles } from "../styles";
+import {
+  computeLabel,
+  ControlProps,
+  isDescriptionHidden,
+  OwnPropsOfEnum,
+} from "@jsonforms/core";
+import type { VanillaRendererProps } from "../index.js";
+import { findStyleAsClassName } from "../reducers/styling.js";
+import { useStyles } from "../styles/index.js";
 import merge from "lodash/merge";
 
 export const RadioGroup = ({
@@ -79,7 +84,8 @@ export const RadioGroup = ({
   if (hasRadioClass) {
     groupStyle = {
       display: "flex",
-      flexDirection: "vertical" === appliedUiSchemaOptions.orientation ? "column" : "row",
+      flexDirection:
+        "vertical" === appliedUiSchemaOptions.orientation ? "column" : "row",
     };
   }
   return (
@@ -90,7 +96,11 @@ export const RadioGroup = ({
       onBlur={() => setFocus(false)}
     >
       <label htmlFor={id} className={classNames.label}>
-        {computeLabel(label, required, appliedUiSchemaOptions.hideRequiredAsterisk)}
+        {computeLabel(
+          label,
+          required,
+          appliedUiSchemaOptions.hideRequiredAsterisk
+        )}
       </label>
       <div className={radioControl} style={groupStyle}>
         {options.map((option) => (

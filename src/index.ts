@@ -23,12 +23,12 @@
   THE SOFTWARE.
 */
 
-export * from "./actions";
-export * from "./controls";
-export * from "./complex";
-export * from "./cells";
-export * from "./layouts";
-export * from "./reducers";
-export * from "./util";
-export * from "./styles";
-export * from "./renderers";
+export * from "./actions/index.js";
+export * from "./controls/index.js";
+export * from "./complex/index.js";
+export * from "./cells/index.js";
+export * from "./layouts/index.js";
+export * from "./reducers/index.js";
+export * from "./util/index.js";
+export * from "./styles/index.js";
+export * from "./renderers.js";

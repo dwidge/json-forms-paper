@@ -24,8 +24,15 @@
 */
 
 import React from "react";
-import { Button, Card, Title, Paragraph, Tooltip, View } from "../styles";
-import ValidationIcon from "../complex/ValidationIcon";
+import {
+  Button,
+  Card,
+  Title,
+  Paragraph,
+  Tooltip,
+  View,
+} from "../styles/index.js";
+import ValidationIcon from "../complex/ValidationIcon.js";
 import { ArrayTranslations } from "@jsonforms/core";
 
 export interface ArrayLayoutToolbarProps {

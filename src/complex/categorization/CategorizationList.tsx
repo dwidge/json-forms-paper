@@ -32,11 +32,14 @@ import {
   Translator,
   isVisible,
 } from "@jsonforms/core";
-import { isCategorization } from "./tester"; // Ensure this works with Expo setup
-import { AjvProps } from "../../util"; // Ensure this works with Expo setup
-import { Text, View } from "../../styles/components";
+import { isCategorization } from "./tester.js"; // Ensure this works with Expo setup
+import { AjvProps } from "../../util/index.js"; // Ensure this works with Expo setup
+import { Text, View } from "../../styles/components.js";
 
-const getCategoryClassName = (category: Category, selectedCategory: Category): string =>
+const getCategoryClassName = (
+  category: Category,
+  selectedCategory: Category
+): string =>
   selectedCategory === category ? "category-label selected" : "category-label";
 
 export interface CategorizationProps {
@@ -99,7 +102,9 @@ export const CategorizationList = ({
               className={getCategoryClassName(category, selectedCategory)}
             >
               <TouchableOpacity onPress={onSelect(idx)}>
-                <Text className={getCategoryClassName(category, selectedCategory)}>
+                <Text
+                  className={getCategoryClassName(category, selectedCategory)}
+                >
                   {categoryLabels[idx]}
                 </Text>
               </TouchableOpacity>

@@ -22,5 +22,5 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-export * from "./i18nDefaults";
-export * from "./props";
+export * from "./i18nDefaults.js";
+export * from "./props.js";

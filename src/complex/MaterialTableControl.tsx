@@ -42,8 +42,8 @@ import startCase from "lodash/startCase";
 import React, { useMemo } from "react";
 
 import merge from "lodash/merge";
-import { WithDeleteDialogSupport } from "./DeleteDialog";
-import TableToolbar from "./TableToolbar";
+import { WithDeleteDialogSupport } from "./DeleteDialog.js";
+import TableToolbar from "./TableToolbar.js";
 
 import {
   DispatchCell,
@@ -52,7 +52,7 @@ import {
 } from "@jsonforms/react";
 import { ScrollView, View } from "react-native";
 import { Button, DataTable, Text, IconButton } from "react-native-paper";
-import NoBorderTableCell from "./NoBorderTableCell";
+import NoBorderTableCell from "./NoBorderTableCell.js";
 import { union } from "lodash";
 import { ErrorObject } from "ajv";
 
@@ -61,7 +61,7 @@ const generateCells = (
   schema: JsonSchema,
   rowPath: string,
   enabled: boolean,
-  cells?: JsonFormsCellRendererRegistryEntry[],
+  cells?: JsonFormsCellRendererRegistryEntry[]
 ) => {
   if (schema.type === "object") {
     return getValidColumnProps(schema).map((prop) => {
@@ -93,7 +93,7 @@ const getValidColumnProps = (scopedSchema: JsonSchema) => {
     typeof scopedSchema.properties === "object"
   ) {
     return Object.keys(scopedSchema.properties).filter(
-      (prop) => scopedSchema.properties?.[prop].type !== "array",
+      (prop) => scopedSchema.properties?.[prop].type !== "array"
     );
   }
   return [""];
@@ -135,7 +135,7 @@ interface OwnPropsOfNonEmptyCell {
 
 const ctxToNonEmptyCellProps = (
   ctx: JsonFormsStateContext,
-  ownProps: OwnPropsOfNonEmptyCell,
+  ownProps: OwnPropsOfNonEmptyCell
 ): NonEmptyCellProps => {
   const path =
     ownProps.rowPath +
@@ -145,11 +145,9 @@ const ctxToNonEmptyCellProps = (
       errorsAt(
         path,
         ownProps.schema,
-        (p) => p === path,
-      )(ctx.core?.errors ?? []).map(
-        (error: ErrorObject) => error.message ?? "",
-      ),
-    ),
+        (p) => p === path
+      )(ctx.core?.errors ?? []).map((error: ErrorObject) => error.message ?? "")
+    )
   );
   return {
     rowPath: ownProps.rowPath,
@@ -194,7 +192,7 @@ const NonEmptyCell = ({
         schema={Resolve.schema(
           schema,
           `#/properties/${encode(propName)}`,
-          schema,
+          schema
         )}
         uischema={{
           type: "Control",
@@ -241,11 +239,11 @@ const NonEmptyRowComponent = ({
 }: NonEmptyRowProps & WithDeleteDialogSupport) => {
   const moveUp = useMemo(
     () => moveUpCreator?.(path, rowIndex),
-    [moveUpCreator, path, rowIndex],
+    [moveUpCreator, path, rowIndex]
   );
   const moveDown = useMemo(
     () => moveDownCreator?.(path, rowIndex),
-    [moveDownCreator, path, rowIndex],
+    [moveDownCreator, path, rowIndex]
   );
 
   return (

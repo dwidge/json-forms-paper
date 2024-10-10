@@ -18,15 +18,15 @@ import {
   withTranslateProps,
 } from "@jsonforms/react";
 import React, { useCallback, useMemo, useState } from "react";
-import { ArrayLayoutToolbar } from "../layouts/ArrayToolbar";
-import ListWithDetailMasterItem from "./ListWithDetailMasterItem";
+import { ArrayLayoutToolbar } from "../layouts/ArrayToolbar.js";
+import ListWithDetailMasterItem from "./ListWithDetailMasterItem.js";
 import merge from "lodash/merge";
 import map from "lodash/map";
 import range from "lodash/range";
 import assert from "assert";
-import { useStyles } from "../styles";
-import { findStyleAsClassName } from "../reducers/styling";
-import { List, Paragraph, Surface, Title, View } from "../styles/components";
+import { useStyles } from "../styles/index.js";
+import { findStyleAsClassName } from "../reducers/styling.js";
+import { List, Paragraph, Surface, Title, View } from "../styles/components.js";
 
 export const MaterialListWithDetailRenderer = ({
   uischemas,

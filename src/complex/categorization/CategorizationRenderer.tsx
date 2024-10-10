@@ -25,12 +25,16 @@
 
 import React, { useState } from "react";
 import type { Categorization, Category, LayoutProps } from "@jsonforms/core";
-import { TranslateProps, withJsonFormsLayoutProps, withTranslateProps } from "@jsonforms/react";
-import { CategorizationList } from "./CategorizationList";
-import { SingleCategory } from "./SingleCategory";
-import { withAjvProps, withVanillaControlProps } from "../../util";
-import type { AjvProps, VanillaRendererProps } from "../../util";
-import { View } from "../../styles/components";
+import {
+  TranslateProps,
+  withJsonFormsLayoutProps,
+  withTranslateProps,
+} from "@jsonforms/react";
+import { CategorizationList } from "./CategorizationList.js";
+import { SingleCategory } from "./SingleCategory.js";
+import { withAjvProps, withVanillaControlProps } from "../../util/index.js";
+import type { AjvProps, VanillaRendererProps } from "../../util/index.js";
+import { View } from "../../styles/components.js";
 
 export interface CategorizationState {
   selectedCategory: Category;
@@ -52,7 +56,11 @@ export const CategorizationRenderer = ({
   getStyleAsClassName = () => "",
   onChange,
   ajv,
-}: LayoutProps & VanillaRendererProps & TranslateProps & CategorizationProps & AjvProps) => {
+}: LayoutProps &
+  VanillaRendererProps &
+  TranslateProps &
+  CategorizationProps &
+  AjvProps) => {
   const categorization = uischema as Categorization;
   const elements = categorization.elements as (Category | Categorization)[];
   const classNames = getStyleAsClassName("categorization");
@@ -61,12 +69,12 @@ export const CategorizationRenderer = ({
   const subcategoriesClassName = getStyleAsClassName("category.subcategories");
   const groupClassName = getStyleAsClassName("category.group");
 
-  const [previousCategorization, setPreviousCategorization] = useState<Categorization>(
-    uischema as Categorization
-  );
+  const [previousCategorization, setPreviousCategorization] =
+    useState<Categorization>(uischema as Categorization);
   const [activeCategory, setActiveCategory] = useState<number>(selected ?? 0);
 
-  const safeCategory = activeCategory >= categorization.elements.length ? 0 : activeCategory;
+  const safeCategory =
+    activeCategory >= categorization.elements.length ? 0 : activeCategory;
 
   if (categorization !== previousCategorization) {
     setActiveCategory(0);
@@ -80,7 +88,9 @@ export const CategorizationRenderer = ({
     return setActiveCategory(categoryIndex);
   };
 
-  const display = !(visible === null || visible === undefined ? false : !visible);
+  const display = !(visible === null || visible === undefined
+    ? false
+    : !visible);
 
   if (!display) return null;
   return (
@@ -111,5 +121,7 @@ export const CategorizationRenderer = ({
 };
 
 export default withAjvProps(
-  withVanillaControlProps(withTranslateProps(withJsonFormsLayoutProps(CategorizationRenderer)))
+  withVanillaControlProps(
+    withTranslateProps(withJsonFormsLayoutProps(CategorizationRenderer))
+  )
 );

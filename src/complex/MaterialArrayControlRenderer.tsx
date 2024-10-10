@@ -38,8 +38,8 @@ import {
   withJsonFormsArrayLayoutProps,
   withTranslateProps,
 } from "@jsonforms/react";
-import { MaterialTableControl } from "./MaterialTableControl";
-import { DeleteDialog } from "./DeleteDialog";
+import { MaterialTableControl } from "./MaterialTableControl.js";
+import { DeleteDialog } from "./DeleteDialog.js";
 import assert from "assert";
 
 export const MaterialArrayControlRenderer = (

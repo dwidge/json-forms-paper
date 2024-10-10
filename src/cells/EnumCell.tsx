@@ -11,8 +11,8 @@ import {
   TranslateProps,
   withTranslateProps,
 } from "@jsonforms/react";
-import { i18nDefaults, withVanillaEnumCellProps } from "../util";
-import type { VanillaRendererProps } from "../index";
+import { i18nDefaults, withVanillaEnumCellProps } from "../util/index.js";
+import type { VanillaRendererProps } from "../index.js";
 
 export const EnumCell = (
   props: EnumCellProps & VanillaRendererProps & TranslateProps

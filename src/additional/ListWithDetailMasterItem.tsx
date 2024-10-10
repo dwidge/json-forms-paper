@@ -1,9 +1,9 @@
 import type { StatePropsOfMasterItem } from "@jsonforms/core";
 import { withJsonFormsMasterListItemProps } from "@jsonforms/react";
 import React, { useMemo } from "react";
-import { useStyles } from "../styles";
-import { findStyleAsClassName } from "../reducers/styling";
-import { Avatar, IconButton, List, Tooltip } from "../styles/components";
+import { useStyles } from "../styles/index.js";
+import { findStyleAsClassName } from "../reducers/styling.js";
+import { Avatar, IconButton, List, Tooltip } from "../styles/components.js";
 
 export const ListWithDetailMasterItem = ({
   index,
