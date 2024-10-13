@@ -66,7 +66,7 @@ const { or, isObjectArrayControl, isPrimitiveArrayControl, rankWith } = Test;
  */
 export const tableArrayControlTester: RankedTester = rankWith(
   3,
-  or(isObjectArrayControl, isPrimitiveArrayControl)
+  or(isObjectArrayControl, isPrimitiveArrayControl),
 );
 
 interface TableArrayControlProps
@@ -203,13 +203,13 @@ const TableArrayControl: React.FC<TableArrayControlProps> = (props) => {
                   {schema.properties ? (
                     Object.keys(schema.properties)
                       .filter(
-                        (prop) => schema.properties?.[prop].type !== "array"
+                        (prop) => schema.properties?.[prop].type !== "array",
                       )
                       .map((prop) => {
                         const jsonType = getJsonType(prop);
                         const childPropPath = Paths.compose(
                           childPath,
-                          prop.toString()
+                          prop.toString(),
                         );
                         return (
                           <DataTable.Cell
@@ -224,7 +224,7 @@ const TableArrayControl: React.FC<TableArrayControlProps> = (props) => {
                               schema={Resolve.schema(
                                 schema,
                                 `#/properties/${encode(prop)}`,
-                                rootSchema
+                                rootSchema,
                               )}
                               uischema={createControlElement(encode(prop))}
                               path={`${childPath}.${prop}`}
@@ -286,6 +286,8 @@ const TableArrayControl: React.FC<TableArrayControlProps> = (props) => {
 
 export default withVanillaControlProps(
   withJsonFormsArrayControlProps(
-    withTranslateProps(withArrayTranslationProps(TableArrayControl))
-  )
+    withTranslateProps(
+      withArrayTranslationProps(TableArrayControl),
+    ) as React.ComponentType<ArrayControlProps>,
+  ),
 ) as typeof TableArrayControl;
