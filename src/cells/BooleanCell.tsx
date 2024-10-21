@@ -38,12 +38,12 @@ import {
 } from "../util/index.js";
 
 export const BooleanCell: FC<CellProps> = (
-  props: CellProps & VanillaRendererProps
+  props: CellProps & VanillaRendererProps,
 ) => {
   const { data, id, enabled, uischema, path, handleChange } = props;
 
   return (
-    <Checkbox
+    <Checkbox.Android
       status={data ? "checked" : "unchecked"}
       onPress={() => handleChange(path, !data)}
       // id={id}
@@ -59,5 +59,5 @@ export const BooleanCell: FC<CellProps> = (
 export const booleanCellTester: RankedTester = rankWith(2, isBooleanControl);
 
 export default withJsonFormsCellProps(
-  withVanillaBooleanCellProps(BooleanCell)
+  withVanillaBooleanCellProps(BooleanCell),
 ) as typeof BooleanCell;

@@ -15,9 +15,10 @@ export const DateCell = (props: CellProps & VanillaRendererProps) => {
   return (
     <TextInput
       mode="outlined"
-      label="Date"
       value={data || ""}
-      onChangeText={(value) => handleChange(path, value)}
+      onChangeText={(value) => {
+        handleChange(path, value === "" ? undefined : value);
+      }}
       className={className}
       testID={id}
       disabled={!enabled}
@@ -29,5 +30,5 @@ export const DateCell = (props: CellProps & VanillaRendererProps) => {
 export const dateCellTester: RankedTester = rankWith(2, isDateControl);
 
 export default withJsonFormsCellProps(
-  withVanillaCellProps(DateCell)
+  withVanillaCellProps(DateCell),
 ) as typeof DateCell;
