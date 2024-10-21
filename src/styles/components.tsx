@@ -29,35 +29,35 @@ const Debug = ({
 const wrap = withClassName(Debug);
 
 export const DataTable = Object.assign(
-  wrap(Paper.DataTable, "StyledView") as React.FC<
+  wrap(Paper.DataTable, "StyledFormView") as React.FC<
     React.ComponentProps<typeof Paper.DataTable> & { className?: string }
   >,
   {
-    Header: wrap(Paper.DataTable.Header, "StyledView") as React.FC<
+    Header: wrap(Paper.DataTable.Header, "StyledFormView") as React.FC<
       React.ComponentProps<typeof Paper.DataTable.Header> & {
         className?: string;
       }
     >,
-    Title: wrap(Paper.DataTable.Title, "StyledView") as React.FC<
+    Title: wrap(Paper.DataTable.Title, "StyledFormView") as React.FC<
       React.ComponentProps<typeof Paper.DataTable.Title> & {
         className?: string;
       }
     >,
-    Cell: wrap(Paper.DataTable.Cell, "StyledView") as React.FC<
+    Cell: wrap(Paper.DataTable.Cell, "StyledFormView") as React.FC<
       React.ComponentProps<typeof Paper.DataTable.Cell> & { className?: string }
     >,
-    Row: wrap(Paper.DataTable.Row, "StyledView") as React.FC<
+    Row: wrap(Paper.DataTable.Row, "StyledFormView") as React.FC<
       React.ComponentProps<typeof Paper.DataTable.Row> & { className?: string }
     >,
   },
 ) as any;
 
 export const Card = Object.assign(
-  wrap(Paper.Card, "StyledView") as React.FC<
+  wrap(Paper.Card, "StyledFormView") as React.FC<
     React.ComponentProps<typeof Paper.Card> & { className?: string }
   >,
   {
-    Content: wrap(Paper.Card.Content, "StyledView") as React.FC<
+    Content: wrap(Paper.Card.Content, "StyledFormView") as React.FC<
       React.ComponentProps<typeof Paper.Card.Content> & { className?: string }
     >,
   },
@@ -66,10 +66,10 @@ export const Card = Object.assign(
 export const List = Object.assign(
   {},
   {
-    Item: wrap(Paper.List.Item, "StyledView") as React.FC<
+    Item: wrap(Paper.List.Item, "StyledFormView") as React.FC<
       React.ComponentProps<typeof Paper.List.Item> & { className?: string }
     >,
-    Accordion: wrap(Paper.List.Accordion, "StyledView") as React.FC<
+    Accordion: wrap(Paper.List.Accordion, "StyledFormView") as React.FC<
       React.ComponentProps<typeof Paper.List.Accordion> & { className?: string }
     >,
   },
@@ -78,17 +78,17 @@ export const List = Object.assign(
 export const Avatar = Object.assign(
   {},
   {
-    Text: wrap(Paper.Avatar.Text, "StyledText") as React.FC<
+    Text: wrap(Paper.Avatar.Text, "StyledFormText") as React.FC<
       React.ComponentProps<typeof Paper.Avatar.Text> & { className?: string }
     >,
   },
 );
 
-export const Title = wrap(Paper.Title, "StyledText") as React.FC<
+export const Title = wrap(Paper.Title, "StyledFormText") as React.FC<
   React.ComponentProps<typeof Paper.Title> & { className?: string }
 >;
 
-const StyledButton = wrap(Paper.Button, "StyledButton") as React.FC<
+const StyledButton = wrap(Paper.Button, "StyledFormButton") as React.FC<
   React.ComponentProps<typeof Paper.Button> & { className?: string }
 >;
 
@@ -113,29 +113,32 @@ export const Button = ({
   </StyledButton>
 );
 
-export const IconButton = wrap(Paper.IconButton, "StyledButton") as React.FC<
+export const IconButton = wrap(
+  Paper.IconButton,
+  "StyledFormButton",
+) as React.FC<
   React.ComponentProps<typeof Paper.IconButton> & { className?: string }
 >;
-export const TextInput = wrap(Paper.TextInput, "StyledInput") as React.FC<
+export const TextInput = wrap(Paper.TextInput, "StyledFormInput") as React.FC<
   React.ComponentProps<typeof Paper.TextInput> & { className?: string }
 >;
-export const Tooltip = wrap(Paper.Tooltip, "StyledText") as React.FC<
+export const Tooltip = wrap(Paper.Tooltip, "StyledFormText") as React.FC<
   React.ComponentProps<typeof Paper.Tooltip> & { className?: string }
 >;
-export const Paragraph = wrap(Paper.Paragraph, "StyledText") as React.FC<
+export const Paragraph = wrap(Paper.Paragraph, "StyledFormText") as React.FC<
   React.ComponentProps<typeof Paper.Paragraph> & { className?: string }
 >;
-export const Surface = wrap(Paper.Surface, "StyledView") as React.FC<
+export const Surface = wrap(Paper.Surface, "StyledFormView") as React.FC<
   React.ComponentProps<typeof Paper.Surface> & { className?: string }
 >;
-export const Text = wrap(Paper.Text, "StyledText") as React.FC<
+export const Text = wrap(Paper.Text, "StyledFormText") as React.FC<
   React.ComponentProps<typeof Paper.Text> & { className?: string }
 >;
-export const View = wrap(RN.View, "StyledView") as React.FC<
+export const View = wrap(RN.View, "StyledFormView") as React.FC<
   React.ComponentProps<typeof RN.View> & { className?: string }
 >;
 
 // Explicitly type the Slider component
-export const Slider = wrap(RNSlider, "StyledView") as React.FC<
+export const Slider = wrap(RNSlider, "StyledFormView") as React.FC<
   React.ComponentProps<typeof RNSlider> & { className?: string }
 >;
