@@ -23,27 +23,18 @@
   THE SOFTWARE.
 */
 
-import React, { useState } from "react";
-import { ScrollView } from "react-native";
-import {
-  Button,
-  IconButton,
-  Text,
-  View,
-  DataTable,
-} from "../styles/components.js";
 import {
   ArrayControlProps,
+  ArrayTranslations,
   ControlElement,
   createDefaultValue,
+  encode,
+  getControlPath,
   Helpers,
   Paths,
   RankedTester,
   Resolve,
   Test,
-  getControlPath,
-  encode,
-  ArrayTranslations,
 } from "@jsonforms/core";
 import {
   DispatchCell,
@@ -51,9 +42,12 @@ import {
   withJsonFormsArrayControlProps,
   withTranslateProps,
 } from "@jsonforms/react";
-import { withVanillaControlProps } from "../util/index.js";
-import type { VanillaRendererProps } from "../index.js";
 import _ from "lodash";
+import React, { useState } from "react";
+import { ScrollView } from "react-native";
+import type { VanillaRendererProps } from "../index.js";
+import { Button, IconButton, Text, View } from "../styles/components.js";
+import { withVanillaControlProps } from "../util/index.js";
 import { DeleteDialog } from "./DeleteDialog.js";
 
 const { convertToValidClassName } = Helpers;
@@ -161,35 +155,38 @@ const TableArrayControl: React.FC<TableArrayControlProps> = (props) => {
           flexGrow: 1,
         }}
       >
-        <DataTable className={tableClass} style={{ flex: 1 }}>
-          <DataTable.Header style={{ flex: 1 }}>
+        <View className={"table-array container"}>
+          <View className={"table-array header row"}>
             {schema.properties ? (
               Object.keys(schema.properties)
                 .filter((prop) => schema.properties?.[prop].type !== "array")
                 .map((prop) => (
-                  <DataTable.Title
+                  <View
+                    className={"table-array header cell " + getJsonType(prop)}
                     key={prop}
-                    style={{
-                      // minWidth: 100,
-                      flex: getJsonType(prop) === "boolean" ? 1 : 3,
-                      justifyContent:
-                        getJsonType(prop) === "boolean" ? "center" : undefined,
-                    }}
                   >
-                    {schema.properties?.[prop].title || _.startCase(prop)}
-                  </DataTable.Title>
+                    <Text
+                      className={"table-array header cell " + getJsonType(prop)}
+                    >
+                      {schema.properties?.[prop].title || _.startCase(prop)}
+                    </Text>
+                  </View>
                 ))
             ) : (
-              <DataTable.Title>Items</DataTable.Title>
+              <View className={"table-array header cell items"}>
+                <Text className={"table-array header cell items"}>Items</Text>
+              </View>
             )}
-            {/* <DataTable.Title>Valid</DataTable.Title> */}
-            <DataTable.Title>Actions</DataTable.Title>
-          </DataTable.Header>
+            {/* <View>Valid</View> */}
+            <View className={"table-array header cell actions"}>
+              <Text className={"table-array header cell actions"}>Actions</Text>
+            </View>
+          </View>
 
           {!data || !Array.isArray(data) || data.length === 0 ? (
-            <DataTable.Row>
-              <DataTable.Cell>{translations.noDataMessage}</DataTable.Cell>
-            </DataTable.Row>
+            <View>
+              <Text>{translations.noDataMessage}</Text>
+            </View>
           ) : (
             data.map((_child, index) => {
               const childPath = Paths.compose(path, `${index}`);
@@ -199,26 +196,23 @@ const TableArrayControl: React.FC<TableArrayControlProps> = (props) => {
               });
 
               return (
-                <DataTable.Row key={childPath}>
+                <View key={childPath} className={"table-array data row"}>
                   {schema.properties ? (
                     Object.keys(schema.properties)
                       .filter(
                         (prop) => schema.properties?.[prop].type !== "array",
                       )
                       .map((prop) => {
-                        const jsonType = getJsonType(prop);
                         const childPropPath = Paths.compose(
                           childPath,
                           prop.toString(),
                         );
                         return (
-                          <DataTable.Cell
+                          <View
                             key={childPropPath}
-                            style={{
-                              flex: jsonType === "boolean" ? 1 : 3,
-                              justifyContent:
-                                jsonType === "boolean" ? "center" : undefined,
-                            }}
+                            className={
+                              "table-array data cell " + getJsonType(prop)
+                            }
                           >
                             <DispatchCell
                               schema={Resolve.schema(
@@ -229,21 +223,24 @@ const TableArrayControl: React.FC<TableArrayControlProps> = (props) => {
                               uischema={createControlElement(encode(prop))}
                               path={`${childPath}.${prop}`}
                             />
-                          </DataTable.Cell>
+                          </View>
                         );
                       })
                   ) : (
-                    <DataTable.Cell
+                    <View
                       key={Paths.compose(childPath, index.toString())}
+                      className={
+                        "table-array data cell " + getJsonType(index.toString())
+                      }
                     >
                       <DispatchCell
                         schema={schema}
                         uischema={createControlElement()}
                         path={childPath}
                       />
-                    </DataTable.Cell>
+                    </View>
                   )}
-                  {/* <DataTable.Cell>
+                  {/* <View>
                     <Text
                       style={{
                         color: errorsPerEntry.length
@@ -255,19 +252,19 @@ const TableArrayControl: React.FC<TableArrayControlProps> = (props) => {
                         ? errorsPerEntry.map((e) => e.message).join(" and ")
                         : "OK"}
                     </Text>
-                  </DataTable.Cell> */}
-                  <DataTable.Cell>
+                  </View> */}
+                  <View className={"table-array data cell actions"}>
                     <IconButton
                       icon="delete"
                       onPress={() => openDeleteDialog(childPath, index)}
                       aria-label={translations.removeTooltip}
                     />
-                  </DataTable.Cell>
-                </DataTable.Row>
+                  </View>
+                </View>
               );
             })
           )}
-        </DataTable>
+        </View>
       </ScrollView>
 
       <DeleteDialog

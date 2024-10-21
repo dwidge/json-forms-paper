@@ -8,7 +8,25 @@ import { withClassName } from "@dwidge/class-name-rnw";
 import RNSlider from "@react-native-community/slider";
 import React from "react";
 
-const wrap = withClassName();
+const Debug = ({
+  children = <></>,
+  themeKey = "",
+  className = "",
+  stylesheet = {} as Record<string, any>,
+  debug = !!stylesheet.debug,
+}) =>
+  debug ? (
+    <RN.View style={stylesheet["debug"]}>
+      <RN.Text style={stylesheet["debug-label"]}>
+        {themeKey} {className}
+      </RN.Text>
+      {children}
+    </RN.View>
+  ) : (
+    children
+  );
+
+const wrap = withClassName(Debug);
 
 export const DataTable = Object.assign(
   wrap(Paper.DataTable, "StyledView") as React.FC<
@@ -20,7 +38,7 @@ export const DataTable = Object.assign(
         className?: string;
       }
     >,
-    Title: wrap(Paper.DataTable.Title, "StyledText") as React.FC<
+    Title: wrap(Paper.DataTable.Title, "StyledView") as React.FC<
       React.ComponentProps<typeof Paper.DataTable.Title> & {
         className?: string;
       }
