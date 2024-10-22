@@ -60,6 +60,7 @@ import MaterialObjectRenderer, {
 // import MaterialOneOfRenderer, {
 //   materialOneOfControlTester,
 // } from './MaterialOneOfRenderer.js';
+import FileRenderer, { fileRendererTester } from "./file/FileRenderer.js";
 
 export {
   // materialAllOfControlTester,
@@ -74,4 +75,6 @@ export {
   MaterialObjectRenderer,
   // materialOneOfControlTester,
   // MaterialOneOfRenderer,
+  FileRenderer,
+  fileRendererTester,
 };

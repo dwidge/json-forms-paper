@@ -66,6 +66,8 @@ import {
   // labelRendererTester,
   TableArrayControl,
   tableArrayControlTester,
+  FileRenderer,
+  fileRendererTester,
 } from "./complex/index.js";
 import {
   // materialAllOfControlTester,
@@ -99,6 +101,10 @@ import {
 } from "./additional/index.js";
 
 export const paperRenderers: { tester: RankedTester; renderer: any }[] = [
+  {
+    tester: fileRendererTester,
+    renderer: FileRenderer,
+  },
   { tester: materialObjectControlTester, renderer: MaterialObjectRenderer },
   // {
   //   tester: materialArrayControlTester,
