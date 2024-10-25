@@ -23,23 +23,14 @@
   THE SOFTWARE.
 */
 
-import range from "lodash/range";
-import React, { useMemo, useState } from "react";
-import {
-  View,
-  Button,
-  IconButton,
-  Text,
-  Paragraph,
-} from "../../styles/index.js";
 import {
   ArrayControlProps,
+  ArrayTranslations,
   composePaths,
+  ControlElement,
   createDefaultValue,
   findUISchema,
   Helpers,
-  ControlElement,
-  ArrayTranslations,
 } from "@jsonforms/core";
 import {
   JsonFormsDispatch,
@@ -47,11 +38,18 @@ import {
   withJsonFormsArrayControlProps,
   withTranslateProps,
 } from "@jsonforms/react";
-import type { VanillaRendererProps } from "../../index.js";
-import { withVanillaControlProps } from "../../util/index.js";
+import range from "lodash/range";
+import React, { useMemo, useState } from "react";
 import { Dialog, Portal } from "react-native-paper";
-
-const { convertToValidClassName } = Helpers;
+import type { VanillaRendererProps } from "../../index.js";
+import {
+  Button,
+  IconButton,
+  Paragraph,
+  Text,
+  View,
+} from "../../styles/index.js";
+import { withVanillaControlProps } from "../../util/index.js";
 
 export const ArrayControl = ({
   classNames,
@@ -124,64 +122,87 @@ export const ArrayControl = ({
             {label}
           </Text>
         )}
-        <View className={"control-array item-controls " + customClassName}>
-          <IconButton
-            icon="plus"
-            aria-label={translations.up}
-            disabled={!enabled}
-            onPress={addItem(path, createDefaultValue(schema, rootSchema))}
-          />
-        </View>
         {!isValid && <Text className="control-array error">{errors}</Text>}
         <View className="control-array items">
+          <View
+            className={"control-array item-controls add " + customClassName}
+          >
+            <IconButton
+              style={{ margin: 0 }}
+              icon="plus"
+              aria-label={translations.up}
+              disabled={!enabled}
+              onPress={addItem(
+                path,
+                createDefaultValue(schema, rootSchema),
+                //@ts-expect-error
+                0, // Insert at beginning
+              )}
+            />
+          </View>
           {data ? (
             range(0, data.length).map((index) => {
               const childPath = composePaths(path, `${index}`);
               return (
-                <View key={index} className="control-array item">
-                  <View key={index} className="control-array item-render">
-                    <JsonFormsDispatch
-                      schema={schema}
-                      uischema={childUiSchema || uischema}
-                      path={childPath}
-                      renderers={renderers}
-                    />
+                <>
+                  <View key={index} className="control-array item">
+                    <View key={index} className="control-array item-render">
+                      <JsonFormsDispatch
+                        schema={schema}
+                        uischema={childUiSchema || uischema}
+                        path={childPath}
+                        renderers={renderers}
+                      />
+                    </View>
+                    <View
+                      className={
+                        "control-array item-controls " + customClassName
+                      }
+                    >
+                      <IconButton
+                        style={{ margin: 0 }}
+                        icon="arrow-up"
+                        aria-label={translations.up}
+                        disabled={!enabled}
+                        onPress={() => moveUp?.(path, index)()}
+                      />
+                      <IconButton
+                        style={{ margin: 0 }}
+                        icon="delete"
+                        aria-label={translations.removeTooltip}
+                        disabled={!enabled}
+                        onPress={() => {
+                          setItemToRemove(index);
+                          setShowDialog(true);
+                        }}
+                      />
+                      <IconButton
+                        style={{ margin: 0 }}
+                        icon="arrow-down"
+                        aria-label={translations.down}
+                        disabled={!enabled}
+                        onPress={() => moveDown?.(path, index)()}
+                      />
+                    </View>
                   </View>
                   <View
-                    className={"control-array item-controls " + customClassName}
+                    className={
+                      "control-array item-controls add " + customClassName
+                    }
                   >
                     <IconButton
+                      style={{ margin: 0 }}
                       icon="plus"
-                      aria-label={translations.up}
                       disabled={!enabled}
                       onPress={addItem(
                         path,
                         createDefaultValue(schema, rootSchema),
+                        //@ts-expect-error
+                        index + 1, // Insert after the current item
                       )}
                     />
-                    <IconButton
-                      icon="arrow-up"
-                      aria-label={translations.up}
-                      disabled={!enabled}
-                      onPress={() => moveUp?.(path, index)()}
-                    />
-                    <IconButton
-                      icon="arrow-down"
-                      aria-label={translations.down}
-                      disabled={!enabled}
-                      onPress={() => moveDown?.(path, index)()}
-                    />
-                    <IconButton
-                      icon="delete"
-                      aria-label={translations.removeTooltip}
-                      disabled={!enabled}
-                      onPress={() => {
-                        setItemToRemove(index);
-                        setShowDialog(true);
-                      }}
-                    />
                   </View>
-                </View>
+                </>
               );
             })
           ) : (
