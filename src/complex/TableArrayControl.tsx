@@ -125,8 +125,12 @@ const TableArrayControl: React.FC<TableArrayControlProps> = (props) => {
     setSelectedPath(null);
   };
 
-  const getJsonType = (prop: string) =>
-    Resolve.schema(schema, `#/properties/${encode(prop)}`, rootSchema).type;
+  const getJsonType = (prop?: string) =>
+    Resolve.schema(
+      schema,
+      prop ? `#/properties/${encode(prop)}` : "#",
+      rootSchema,
+    )?.type ?? "";
 
   if (!visible) return null;
   return (
@@ -162,11 +166,15 @@ const TableArrayControl: React.FC<TableArrayControlProps> = (props) => {
                 .filter((prop) => schema.properties?.[prop].type !== "array")
                 .map((prop) => (
                   <View
-                    className={"table-array header cell " + getJsonType(prop)}
+                    className={
+                      "table-array header cell property " + getJsonType(prop)
+                    }
                     key={prop}
                   >
                     <Text
-                      className={"table-array header cell " + getJsonType(prop)}
+                      className={
+                        "table-array header cell property " + getJsonType(prop)
+                      }
                     >
                       {schema.properties?.[prop].title || _.startCase(prop)}
                     </Text>
@@ -211,7 +219,8 @@ const TableArrayControl: React.FC<TableArrayControlProps> = (props) => {
                           <View
                             key={childPropPath}
                             className={
-                              "table-array data cell " + getJsonType(prop)
+                              "table-array data cell property " +
+                              getJsonType(prop)
                             }
                           >
                             <DispatchCell
@@ -230,7 +239,7 @@ const TableArrayControl: React.FC<TableArrayControlProps> = (props) => {
                     <View
                       key={Paths.compose(childPath, index.toString())}
                       className={
-                        "table-array data cell " + getJsonType(index.toString())
+                        "table-array data cell primitive " + getJsonType()
                       }
                     >
                       <DispatchCell
