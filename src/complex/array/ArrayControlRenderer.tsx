@@ -76,6 +76,8 @@ export const ArrayControl = ({
   const controlElement = uischema as ControlElement;
   const [showDialog, setShowDialog] = useState(false);
   const [itemToRemove, setItemToRemove] = useState<number | null>(null);
+  const customClassName =
+    (controlElement.options?.tags?.toString?.() as string) ?? "";
 
   const childUiSchema = useMemo(
     () =>
@@ -86,9 +88,9 @@ export const ArrayControl = ({
         path,
         undefined,
         uischema,
-        rootSchema
+        rootSchema,
       ),
-    [uischemas, schema, uischema.scope, path, uischema, rootSchema]
+    [uischemas, schema, uischema.scope, path, uischema, rootSchema],
   );
 
   const isValid = errors.length === 0;
@@ -116,66 +118,78 @@ export const ArrayControl = ({
         </Dialog>
       </Portal>
 
-      <View className="array-container">
+      <View className="control-array container">
         {!!label && (
-          <Text variant="titleLarge" className="array-title">
+          <Text variant="titleLarge" className="control-array label">
             {label}
           </Text>
         )}
-        <Button
-          className="array-button"
-          mode="contained"
-          disabled={!enabled}
-          onPress={addItem(path, createDefaultValue(schema, rootSchema))}
-        >
-          {translations.addTooltip}
-        </Button>
-        {!isValid && <Text className="error array-error">{errors}</Text>}
-        {data ? (
-          range(0, data.length).map((index) => {
-            const childPath = composePaths(path, `${index}`);
-            return (
-              <View key={index} className="array-item">
-                <JsonFormsDispatch
-                  schema={schema}
-                  uischema={childUiSchema || uischema}
-                  path={childPath}
-                  renderers={renderers}
-                />
-                <View
-                  className="array-item-controls"
-                  style={{
-                    flexDirection: "row",
-                  }}
-                >
-                  <IconButton
-                    icon="arrow-up"
-                    aria-label={translations.up}
-                    disabled={!enabled}
-                    onPress={() => moveUp?.(path, index)()}
-                  />
-                  <IconButton
-                    icon="arrow-down"
-                    aria-label={translations.down}
-                    disabled={!enabled}
-                    onPress={() => moveDown?.(path, index)()}
-                  />
-                  <IconButton
-                    icon="delete"
-                    aria-label={translations.removeTooltip}
-                    disabled={!enabled}
-                    onPress={() => {
-                      setItemToRemove(index);
-                      setShowDialog(true);
-                    }}
-                  />
+        <View className={"control-array item-controls " + customClassName}>
+          <IconButton
+            icon="plus"
+            aria-label={translations.up}
+            disabled={!enabled}
+            onPress={addItem(path, createDefaultValue(schema, rootSchema))}
+          />
+        </View>
+        {!isValid && <Text className="control-array error">{errors}</Text>}
+        <View className="control-array items">
+          {data ? (
+            range(0, data.length).map((index) => {
+              const childPath = composePaths(path, `${index}`);
+              return (
+                <View key={index} className="control-array item">
+                  <View key={index} className="control-array item-render">
+                    <JsonFormsDispatch
+                      schema={schema}
+                      uischema={childUiSchema || uischema}
+                      path={childPath}
+                      renderers={renderers}
+                    />
+                  </View>
+                  <View
+                    className={"control-array item-controls " + customClassName}
+                  >
+                    <IconButton
+                      icon="plus"
+                      aria-label={translations.up}
+                      disabled={!enabled}
+                      onPress={addItem(
+                        path,
+                        createDefaultValue(schema, rootSchema),
+                      )}
+                    />
+                    <IconButton
+                      icon="arrow-up"
+                      aria-label={translations.up}
+                      disabled={!enabled}
+                      onPress={() => moveUp?.(path, index)()}
+                    />
+                    <IconButton
+                      icon="arrow-down"
+                      aria-label={translations.down}
+                      disabled={!enabled}
+                      onPress={() => moveDown?.(path, index)()}
+                    />
+                    <IconButton
+                      icon="delete"
+                      aria-label={translations.removeTooltip}
+                      disabled={!enabled}
+                      onPress={() => {
+                        setItemToRemove(index);
+                        setShowDialog(true);
+                      }}
+                    />
+                  </View>
                 </View>
-              </View>
-            );
-          })
-        ) : (
-          <Text className="array-nodata">{translations.noDataMessage}</Text>
-        )}
+              );
+            })
+          ) : (
+            <Text className="control-array message nodata">
+              {translations.noDataMessage}
+            </Text>
+          )}
+        </View>
       </View>
     </>
   );
@@ -204,7 +218,7 @@ export const ArrayControlRenderer = ({
   const controlElement = uischema as ControlElement;
   const labelDescription = Helpers.createLabelDescriptionFrom(
     controlElement,
-    schema
+    schema,
   );
   const label = labelDescription.show ? labelDescription.text : "";
 
@@ -236,6 +250,6 @@ export const ArrayControlRenderer = ({
 
 export default withVanillaControlProps(
   withJsonFormsArrayControlProps(
-    withTranslateProps(withArrayTranslationProps(ArrayControlRenderer))
-  )
+    withTranslateProps(withArrayTranslationProps(ArrayControlRenderer)),
+  ),
 );
