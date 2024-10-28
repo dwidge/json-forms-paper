@@ -39,7 +39,7 @@ import {
   withTranslateProps,
 } from "@jsonforms/react";
 import range from "lodash/range";
-import React, { useMemo, useState } from "react";
+import React, { Fragment, useMemo, useState } from "react";
 import { Dialog, Portal } from "react-native-paper";
 import type { VanillaRendererProps } from "../../index.js";
 import {
@@ -50,6 +50,7 @@ import {
   View,
 } from "../../styles/index.js";
 import { withVanillaControlProps } from "../../util/index.js";
+import { TouchableOpacity } from "react-native";
 
 export const ArrayControl = ({
   classNames,
@@ -74,8 +75,12 @@ export const ArrayControl = ({
   const controlElement = uischema as ControlElement;
   const [showDialog, setShowDialog] = useState(false);
   const [itemToRemove, setItemToRemove] = useState<number | null>(null);
+  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(
+    null,
+  );
   const customClassName =
     (controlElement.options?.tags?.toString?.() as string) ?? "";
+  const summaryUiSchema = controlElement.options?.summary;
 
   const childUiSchema = useMemo(
     () =>
@@ -90,6 +95,8 @@ export const ArrayControl = ({
       ),
     [uischemas, schema, uischema.scope, path, uischema, rootSchema],
   );
+
+  const shouldConfirmDelete = false;
 
   const isValid = errors.length === 0;
 
@@ -128,7 +135,6 @@ export const ArrayControl = ({
             className={"control-array item-controls add " + customClassName}
           >
             <IconButton
-              style={{ margin: 0 }}
               icon="plus"
               aria-label={translations.up}
               disabled={!enabled}
@@ -143,41 +149,56 @@ export const ArrayControl = ({
           {data ? (
             range(0, data.length).map((index) => {
               const childPath = composePaths(path, `${index}`);
+              const isSelected = selectedItemIndex === index;
+
               return (
-                <>
-                  <View key={index} className="control-array item">
-                    <View key={index} className="control-array item-render">
-                      <JsonFormsDispatch
-                        schema={schema}
-                        uischema={childUiSchema || uischema}
-                        path={childPath}
-                        renderers={renderers}
-                      />
-                    </View>
+                <Fragment key={index}>
+                  <View className="control-array item">
+                    <TouchableOpacity
+                      style={{ flex: 1 }}
+                      onPress={() =>
+                        setSelectedItemIndex((prev) =>
+                          prev === index ? null : index,
+                        )
+                      }
+                      disabled={!summaryUiSchema}
+                    >
+                      <View key={index} className="control-array item-render">
+                        <JsonFormsDispatch
+                          schema={schema}
+                          uischema={
+                            isSelected
+                              ? childUiSchema
+                              : (summaryUiSchema ?? childUiSchema)
+                          }
+                          path={childPath}
+                          renderers={renderers}
+                        />
+                      </View>
+                    </TouchableOpacity>
                     <View
                       className={
                         "control-array item-controls " + customClassName
                       }
                     >
                       <IconButton
-                        style={{ margin: 0 }}
                         icon="arrow-up"
                         aria-label={translations.up}
                         disabled={!enabled}
                         onPress={() => moveUp?.(path, index)()}
                       />
                       <IconButton
-                        style={{ margin: 0 }}
                         icon="delete"
                         aria-label={translations.removeTooltip}
                         disabled={!enabled}
                         onPress={() => {
-                          setItemToRemove(index);
-                          setShowDialog(true);
+                          if (shouldConfirmDelete) {
+                            setItemToRemove(index);
+                            setShowDialog(true);
+                          } else removeItems?.(path, [index])();
                         }}
                       />
                       <IconButton
-                        style={{ margin: 0 }}
                         icon="arrow-down"
                         aria-label={translations.down}
                         disabled={!enabled}
@@ -191,7 +212,6 @@ export const ArrayControl = ({
                     }
                   >
                     <IconButton
-                      style={{ margin: 0 }}
                       icon="plus"
                       disabled={!enabled}
                       onPress={addItem(
@@ -202,7 +222,7 @@ export const ArrayControl = ({
                       )}
                     />
                   </View>
-                </>
+                </Fragment>
               );
             })
           ) : (

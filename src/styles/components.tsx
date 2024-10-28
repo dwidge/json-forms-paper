@@ -113,13 +113,21 @@ export const Button = ({
   </StyledButton>
 );
 
+export const TextInputNoPress = ({
+  ...props
+}: React.ComponentProps<typeof Paper.TextInput>) => (
+  <RN.Pressable style={{ flex: 1 }} onPress={() => {}}>
+    <Paper.TextInput {...props} />
+  </RN.Pressable>
+);
+
 export const IconButton = wrap(
   Paper.IconButton,
   "StyledFormButton",
 ) as React.FC<
   React.ComponentProps<typeof Paper.IconButton> & { className?: string }
 >;
-export const TextInput = wrap(Paper.TextInput, "StyledFormInput") as React.FC<
+export const TextInput = wrap(TextInputNoPress, "StyledFormInput") as React.FC<
   React.ComponentProps<typeof Paper.TextInput> & { className?: string }
 >;
 export const Tooltip = wrap(Paper.Tooltip, "StyledFormText") as React.FC<
