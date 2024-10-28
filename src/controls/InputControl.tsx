@@ -22,10 +22,7 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import maxBy from "lodash/maxBy";
-import React, { useState } from "react";
 import {
-  computeLabel,
   ControlProps,
   isControl,
   isDescriptionHidden,
@@ -34,10 +31,13 @@ import {
   rankWith,
 } from "@jsonforms/core";
 import { DispatchCell, withJsonFormsControlProps } from "@jsonforms/react";
-import { withVanillaControlProps } from "../util/index.js";
-import type { VanillaRendererProps } from "../index.js";
+import maxBy from "lodash/maxBy";
 import merge from "lodash/merge";
+import React, { useState } from "react";
+import { LabelError } from "../complex/file/LabelError.js";
+import type { VanillaRendererProps } from "../index.js";
 import { Text, View } from "../styles/components.js";
+import { withVanillaControlProps } from "../util/index.js";
 
 const InputControl = (props: ControlProps & VanillaRendererProps) => {
   const {
@@ -70,7 +70,7 @@ const InputControl = (props: ControlProps & VanillaRendererProps) => {
     visible,
     description,
     isFocused,
-    appliedUiSchemaOptions.showUnfocusedDescription
+    appliedUiSchemaOptions.showUnfocusedDescription,
   );
   const testerContext = {
     rootSchema: rootSchema,
@@ -94,16 +94,13 @@ const InputControl = (props: ControlProps & VanillaRendererProps) => {
         // onBlur={() => setIsFocused(false)}
         id={id}
       >
-        <Text className={classNames.label}>
-          {computeLabel(
-            label,
-            required ?? false,
-            appliedUiSchemaOptions.hideRequiredAsterisk
-          )}{" "}
-          {!isValid && (
-            <Text className={"error " + classNames.label}>{errors.trim()}</Text>
-          )}
-        </Text>
+        <LabelError
+          className={"input"}
+          label={label}
+          errors={errors}
+          required={required}
+          hideRequiredAsterisk={appliedUiSchemaOptions.hideRequiredAsterisk}
+        />
         <DispatchCell
           uischema={uischema}
           schema={schema}

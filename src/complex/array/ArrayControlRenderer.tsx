@@ -51,6 +51,8 @@ import {
 } from "../../styles/index.js";
 import { withVanillaControlProps } from "../../util/index.js";
 import { TouchableOpacity } from "react-native";
+import { LabelError } from "../file/LabelError.js";
+import { merge } from "lodash";
 
 export const ArrayControl = ({
   classNames,
@@ -70,8 +72,15 @@ export const ArrayControl = ({
   rootSchema,
   translations,
   enabled,
+  required,
+  className = "control-array",
+  config,
+  appliedUiSchemaOptions = merge({}, config, uischema.options),
 }: ArrayControlProps &
-  VanillaRendererProps & { translations: ArrayTranslations }) => {
+  VanillaRendererProps & {
+    translations: ArrayTranslations;
+    appliedUiSchemaOptions?: Record<string, any>;
+  }) => {
   const controlElement = uischema as ControlElement;
   const [showDialog, setShowDialog] = useState(false);
   const [itemToRemove, setItemToRemove] = useState<number | null>(null);
@@ -98,8 +107,6 @@ export const ArrayControl = ({
 
   const shouldConfirmDelete = false;
 
-  const isValid = errors.length === 0;
-
   const handleConfirmRemove = () => {
     if (itemToRemove !== null) {
       removeItems?.(path, [itemToRemove])();
@@ -124,12 +131,13 @@ export const ArrayControl = ({
       </Portal>
 
       <View className="control-array container">
-        {!!label && (
-          <Text variant="titleLarge" className="control-array label">
-            {label}
-          </Text>
-        )}
-        {!isValid && <Text className="control-array error">{errors}</Text>}
+        <LabelError
+          className={className}
+          label={label}
+          errors={errors}
+          required={required}
+          hideRequiredAsterisk={appliedUiSchemaOptions.hideRequiredAsterisk}
+        />
         <View className="control-array items">
           <View
             className={"control-array item-controls add " + customClassName}
