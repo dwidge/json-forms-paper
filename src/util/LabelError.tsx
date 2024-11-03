@@ -4,7 +4,7 @@
 
 import { computeLabel } from "@jsonforms/core";
 import React from "react";
-import { Text, View } from "../../styles/components.js";
+import { Text, View } from "../styles/components.js";
 
 export const LabelError = ({
   className = "",

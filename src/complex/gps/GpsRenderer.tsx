@@ -18,11 +18,11 @@ import {
 import { merge } from "lodash";
 import React, { useContext } from "react";
 import { View } from "../../styles/components.js";
-import { FileControlContext } from "./FileContext.js";
-import { FileControlComponent } from "./FileType.js";
+import { GpsControlContext } from "./GpsContext.js";
+import { GpsControlComponent } from "./GpsType.js";
 import { LabelError } from "../../util/LabelError.js";
 
-const FileRenderer = ({
+const GpsRenderer = ({
   data,
   label,
   required,
@@ -32,12 +32,12 @@ const FileRenderer = ({
   schema,
   config,
   uischema,
-  Component = useContext(FileControlContext),
+  Component = useContext(GpsControlContext),
   appliedUiSchemaOptions = merge({}, config, uischema.options),
-  className = "file-control " + appliedUiSchemaOptions.className,
+  className = "gps-control " + appliedUiSchemaOptions.className,
 }: StatePropsOfControlWithDetail &
   CellProps & {
-    Component: FileControlComponent;
+    Component: GpsControlComponent;
     appliedUiSchemaOptions?: Record<string, any>;
     className?: string;
   }) => (
@@ -59,23 +59,22 @@ const FileRenderer = ({
   </View>
 );
 
-export const fileRendererTester: RankedTester = rankWith(
+export const gpsRendererTester: RankedTester = rankWith(
   3,
   and(
-    optionIs("control", "file"),
+    optionIs("control", "gps"),
     schemaMatches(
       (schema) =>
         !!(
           schema.type === "object" &&
           schema.properties &&
-          schema.properties.id &&
-          schema.properties.size &&
-          schema.properties.mime
+          schema.properties.coords &&
+          schema.properties.timestamp
         ),
     ),
   ),
 );
 
 export default withJsonFormsDetailProps(
-  withJsonFormsCellProps(FileRenderer as any) as any,
-) as typeof FileRenderer;
+  withJsonFormsCellProps(GpsRenderer as any) as any,
+) as typeof GpsRenderer;

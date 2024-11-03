@@ -18,11 +18,11 @@ import {
 import { merge } from "lodash";
 import React, { useContext } from "react";
 import { View } from "../../styles/components.js";
-import { FileControlContext } from "./FileContext.js";
-import { FileControlComponent } from "./FileType.js";
+import { SignatureControlContext } from "./SignatureContext.js";
+import { SignatureComponent } from "./SignatureType.js";
 import { LabelError } from "../../util/LabelError.js";
 
-const FileRenderer = ({
+const SignatureRenderer = ({
   data,
   label,
   required,
@@ -32,12 +32,12 @@ const FileRenderer = ({
   schema,
   config,
   uischema,
-  Component = useContext(FileControlContext),
+  Component = useContext(SignatureControlContext),
   appliedUiSchemaOptions = merge({}, config, uischema.options),
-  className = "file-control " + appliedUiSchemaOptions.className,
+  className = "signature-control " + appliedUiSchemaOptions.className,
 }: StatePropsOfControlWithDetail &
   CellProps & {
-    Component: FileControlComponent;
+    Component: SignatureComponent;
     appliedUiSchemaOptions?: Record<string, any>;
     className?: string;
   }) => (
@@ -59,10 +59,10 @@ const FileRenderer = ({
   </View>
 );
 
-export const fileRendererTester: RankedTester = rankWith(
+export const signatureRendererTester: RankedTester = rankWith(
   3,
   and(
-    optionIs("control", "file"),
+    optionIs("control", "signature"),
     schemaMatches(
       (schema) =>
         !!(
@@ -77,5 +77,5 @@ export const fileRendererTester: RankedTester = rankWith(
 );
 
 export default withJsonFormsDetailProps(
-  withJsonFormsCellProps(FileRenderer as any) as any,
-) as typeof FileRenderer;
+  withJsonFormsCellProps(SignatureRenderer as any) as any,
+) as typeof SignatureRenderer;

@@ -23,8 +23,6 @@
   THE SOFTWARE.
 */
 
-export { FileRendererContext } from "./complex/file/FileRenderer.js";
-
 export * from "./actions/index.js";
 export * from "./controls/index.js";
 export * from "./complex/index.js";

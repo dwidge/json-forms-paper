@@ -34,7 +34,7 @@ import { DispatchCell, withJsonFormsControlProps } from "@jsonforms/react";
 import maxBy from "lodash/maxBy";
 import merge from "lodash/merge";
 import React, { useState } from "react";
-import { LabelError } from "../complex/file/LabelError.js";
+import { LabelError } from "../util/LabelError.js";
 import type { VanillaRendererProps } from "../index.js";
 import { Text, View } from "../styles/components.js";
 import { withVanillaControlProps } from "../util/index.js";

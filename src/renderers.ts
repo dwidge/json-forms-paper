@@ -68,6 +68,10 @@ import {
   tableArrayControlTester,
   FileRenderer,
   fileRendererTester,
+  GpsRenderer,
+  gpsRendererTester,
+  SignatureRenderer,
+  signatureRendererTester,
 } from "./complex/index.js";
 import {
   // materialAllOfControlTester,
@@ -104,6 +108,14 @@ export const paperRenderers: { tester: RankedTester; renderer: any }[] = [
   {
     tester: fileRendererTester,
     renderer: FileRenderer,
+  },
+  {
+    tester: gpsRendererTester,
+    renderer: GpsRenderer,
+  },
+  {
+    tester: signatureRendererTester,
+    renderer: SignatureRenderer,
   },
   { tester: materialObjectControlTester, renderer: MaterialObjectRenderer },
   // {

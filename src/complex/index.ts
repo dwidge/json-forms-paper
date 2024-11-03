@@ -78,3 +78,6 @@ export {
   FileRenderer,
   fileRendererTester,
 };
+export * from "./file/index.js";
+export * from "./gps/index.js";
+export * from "./signature/index.js";

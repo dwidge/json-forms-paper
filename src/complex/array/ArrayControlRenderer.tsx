@@ -51,7 +51,7 @@ import {
 } from "../../styles/index.js";
 import { withVanillaControlProps } from "../../util/index.js";
 import { TouchableOpacity } from "react-native";
-import { LabelError } from "../file/LabelError.js";
+import { LabelError } from "../../util/LabelError.js";
 import { merge } from "lodash";
 
 export const ArrayControl = ({
