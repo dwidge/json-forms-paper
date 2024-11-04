@@ -32,13 +32,13 @@ import {
   Translator,
   isVisible,
 } from "@jsonforms/core";
-import { isCategorization } from "./tester.js"; // Ensure this works with Expo setup
-import { AjvProps } from "../../util/index.js"; // Ensure this works with Expo setup
+import { isCategorization } from "./tester.js";
+import { AjvProps } from "../../util/index.js";
 import { Text, View } from "../../styles/components.js";
 
 const getCategoryClassName = (
   category: Category,
-  selectedCategory: Category
+  selectedCategory: Category,
 ): string =>
   selectedCategory === category ? "category-label selected" : "category-label";
 
@@ -64,20 +64,16 @@ export const CategorizationList = ({
   t,
   ajv,
 }: CategorizationProps & AjvProps) => {
-  const filteredElements = useMemo(() => {
-    return elements.filter((category: Category | Categorization) =>
-      isVisible(category, data, "", ajv)
-    );
-  }, [elements, data, ajv]);
-
   const categoryLabels = useMemo(
-    () => filteredElements.map((cat) => deriveLabelForUISchemaElement(cat, t)),
-    [filteredElements, t]
+    () => elements.map((cat) => deriveLabelForUISchemaElement(cat, t)),
+    [elements, t],
   );
 
   return (
     <View className={"category-list " + subcategoriesClassName}>
-      {filteredElements.map((category, idx) => {
+      {elements.map((category, idx) => {
+        if (!isVisible(category, data, "", ajv)) return;
+
         if (isCategorization(category)) {
           return (
             <View key={categoryLabels[idx]} className={groupClassName}>
