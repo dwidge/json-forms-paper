@@ -24,7 +24,7 @@
 */
 
 import React, { useMemo } from "react";
-import { Menu, Button } from "react-native-paper";
+import { Menu, List, Button } from "react-native-paper";
 import {
   EnumCellProps,
   isEnumControl,
@@ -71,7 +71,7 @@ export const EnumCell = (
       }
     >
       {options?.map((optionValue) => (
-        <Menu.Item
+        <List.Item
           key={optionValue.value}
           onPress={() => {
             handleChange(path, optionValue.value);
