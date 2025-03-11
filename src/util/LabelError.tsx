@@ -19,6 +19,10 @@ export const LabelError = ({
         {computeLabel(label, required ?? false, hideRequiredAsterisk)}
       </Text>
     )}
-    {!!errors.length && <Text className={className + " error"}>{errors}</Text>}
+    {!!errors.length && (
+      <Text className={className + " error"} numberOfLines={10}>
+        {errors}
+      </Text>
+    )}
   </View>
 );
